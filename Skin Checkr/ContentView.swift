@@ -12,7 +12,6 @@
 // Protocols
 // Mocks
 //Data Services
-
 import SwiftUI
 
 struct ScanReminder: Identifiable {
@@ -22,17 +21,24 @@ struct ScanReminder: Identifiable {
 }
 
 struct SkinScannerView: View {
+    // Define light blue color palette
+    let skyBlue = Color(red: 0.35, green: 0.60, blue: 0.80)          // Sky blue (primary)
+    let lightBlue = Color(red: 0.65, green: 0.85, blue: 1.00)        // Light blue (secondary)
+    let paleBlue = Color(red: 0.85, green: 0.95, blue: 1.00)         // Pale blue for subtle elements
+    let deeperBlue = Color(red: 0.20, green: 0.40, blue: 0.75)       // Deeper blue for contrast
+    let darkBlue = Color(red: 0.10, green: 0.25, blue: 0.45)         // Dark blue for backgrounds
+    
     @State private var reminders: [ScanReminder] = [
         ScanReminder(location: "Right Shoulder", dueDate: Date())
     ]
     
     var body: some View {
         ZStack {
-            // Gradient background
+            // Gradient background with premium purple colors
             LinearGradient(
                 gradient: Gradient(colors: [
-                    Color(red: 0.11, green: 0.13, blue: 0.19),
-                    Color(red: 0.16, green: 0.22, blue: 0.28)
+                    darkBlue,
+                    deeperBlue
                 ]),
                 startPoint: .topLeading,
                 endPoint: .bottomTrailing
@@ -41,24 +47,28 @@ struct SkinScannerView: View {
             
             // Background decorative elements
             Circle()
-                .fill(Color(red: 0.15, green: 0.62, blue: 0.86, opacity: 0.3))
+                .fill(skyBlue.opacity(0.3))
                 .frame(width: 250, height: 250)
                 .blur(radius: 50)
                 .offset(x: -100, y: -150)
             
             Circle()
-                .fill(Color(red: 0.76, green: 0.39, blue: 0.79, opacity: 0.3))
+                .fill(lightBlue.opacity(0.4))
                 .frame(width: 300, height: 300)
                 .blur(radius: 60)
                 .offset(x: 150, y: 100)
             
             // Main content
             VStack(spacing: 30) {
-                // Modern glass header
+                // Modern glass header with glow effect
                 Text("Skin Checkr")
-                    .font(.system(size: 34, weight: .bold))
+                    .font(.system(size: 50, weight: .bold))
                     .foregroundColor(.white)
-                    .padding(.top, 40)
+                // Tagline
+                Text("Advanced AI analysis of your skin condition")
+                    .font(.system(size: 16, weight: .medium))
+                    .foregroundColor(paleBlue)
+                    .padding(.top, -15)
                 
                 Spacer()
                 
@@ -72,22 +82,9 @@ struct SkinScannerView: View {
                     }
                     .frame(width: 260, height: 60)
                     .foregroundColor(.white)
-                    .background(
-                        LinearGradient(
-                            gradient: Gradient(colors: [
-                                Color.white.opacity(0.2),
-                                Color.white.opacity(0.1)
-                            ]),
-                            startPoint: .topLeading,
-                            endPoint: .bottomTrailing
-                        )
-                    )
+                    .background(skyBlue)
                     .cornerRadius(30)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 30)
-                            .stroke(Color.white.opacity(0.3), lineWidth: 1)
-                    )
-                    .shadow(color: Color.black.opacity(0.1), radius: 10, x: 0, y: 5)
+                    .shadow(color: deeperBlue.opacity(0.3), radius: 10, x: 0, y: 5)
                 }
                 
                 Spacer()
@@ -111,59 +108,39 @@ struct SkinScannerView: View {
                                 .foregroundColor(.white)
                                 .padding(.horizontal, 20)
                                 .padding(.vertical, 10)
-                                .background(Color.white.opacity(0.2))
+                                .background(skyBlue)
                                 .cornerRadius(20)
-                                .overlay(
-                                    RoundedRectangle(cornerRadius: 20)
-                                        .stroke(Color.white.opacity(0.3), lineWidth: 1)
-                                )
                         }
                     }
                 }
                 .padding(25)
-                .background(
-                    LinearGradient(
-                        gradient: Gradient(colors: [
-                            Color.white.opacity(0.2),
-                            Color.white.opacity(0.1)
-                        ]),
-                        startPoint: .topLeading,
-                        endPoint: .bottomTrailing
-                    )
-                )
+                .background(skyBlue.opacity(0.2))
                 .cornerRadius(20)
                 .overlay(
                     RoundedRectangle(cornerRadius: 20)
-                        .stroke(Color.white.opacity(0.3), lineWidth: 1)
+                        .stroke(lightBlue, lineWidth: 1)
                 )
-                .shadow(color: Color.black.opacity(0.1), radius: 10, x: 0, y: 5)
+                .shadow(color: Color.black.opacity(0.15), radius: 10, x: 0, y: 5)
                 .padding(.horizontal, 20)
                 
                 Spacer()
                 
+    
+                
                 // Glass tab bar
                 HStack(spacing: 0) {
-                    TabItemGlass(icon: "house.fill", title: "Home", isSelected: true)
-                    TabItemGlass(icon: "figure.stand", title: "Body Map", isSelected: false)
-                    TabItemGlass(icon: "clock.arrow.circlepath", title: "History", isSelected: false)
+                    TabItemGlass(icon: "house.fill", title: "Home", isSelected: true, accentColor: lightBlue)
+                    TabItemGlass(icon: "figure.stand", title: "Body Map", isSelected: false, accentColor: lightBlue)
+                    TabItemGlass(icon: "clock.arrow.circlepath", title: "History", isSelected: false, accentColor: lightBlue)
                 }
                 .padding(.vertical, 15)
-                .background(
-                    LinearGradient(
-                        gradient: Gradient(colors: [
-                            Color.white.opacity(0.2),
-                            Color.white.opacity(0.1)
-                        ]),
-                        startPoint: .topLeading,
-                        endPoint: .bottomTrailing
-                    )
-                )
+                .background(skyBlue.opacity(0.2))
                 .cornerRadius(30)
                 .overlay(
                     RoundedRectangle(cornerRadius: 30)
-                        .stroke(Color.white.opacity(0.3), lineWidth: 1)
+                        .stroke(lightBlue, lineWidth: 1)
                 )
-                .shadow(color: Color.black.opacity(0.1), radius: 10, x: 0, y: 5)
+                .shadow(color: Color.black.opacity(0.15), radius: 10, x: 0, y: 5)
                 .padding(.horizontal, 20)
                 .padding(.bottom, 20)
             }
@@ -175,6 +152,7 @@ struct TabItemGlass: View {
     let icon: String
     let title: String
     let isSelected: Bool
+    let accentColor: Color
     
     var body: some View {
         VStack(spacing: 5) {
@@ -183,7 +161,7 @@ struct TabItemGlass: View {
             Text(title)
                 .font(.system(size: 12, weight: .medium))
         }
-        .foregroundColor(isSelected ? Color(red: 0.15, green: 0.62, blue: 0.86) : Color.white.opacity(0.7))
+        .foregroundColor(isSelected ? accentColor : Color.white.opacity(0.7))
         .frame(maxWidth: .infinity)
     }
 }
