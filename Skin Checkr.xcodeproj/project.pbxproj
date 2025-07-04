@@ -6,6 +6,15 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		EFEB61772E17E914001485C1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFEB61732E17E914001485C1 /* ContentView.swift */; };
+		EFEB61782E17E914001485C1 /* Skin_CheckrApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFEB61752E17E914001485C1 /* Skin_CheckrApp.swift */; };
+		EFEB61792E17E914001485C1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EFEB61722E17E914001485C1 /* Assets.xcassets */; };
+		EFEB617C2E17E916001485C1 /* Skin_CheckrTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFEB617A2E17E916001485C1 /* Skin_CheckrTests.swift */; };
+		EFEB61802E17E919001485C1 /* Skin_CheckrUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFEB617D2E17E919001485C1 /* Skin_CheckrUITests.swift */; };
+		EFEB61812E17E919001485C1 /* Skin_CheckrUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFEB617E2E17E919001485C1 /* Skin_CheckrUITestsLaunchTests.swift */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		EFEB61462E17E71E001485C1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -27,25 +36,14 @@
 		EFEB61372E17E71D001485C1 /* Skin Checkr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Skin Checkr.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFEB61452E17E71E001485C1 /* Skin CheckrTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Skin CheckrTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFEB614F2E17E71E001485C1 /* Skin CheckrUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Skin CheckrUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EFEB61722E17E914001485C1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		EFEB61732E17E914001485C1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		EFEB61742E17E914001485C1 /* Skin_Checkr.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Skin_Checkr.entitlements; sourceTree = "<group>"; };
+		EFEB61752E17E914001485C1 /* Skin_CheckrApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Skin_CheckrApp.swift; sourceTree = "<group>"; };
+		EFEB617A2E17E916001485C1 /* Skin_CheckrTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Skin_CheckrTests.swift; sourceTree = "<group>"; };
+		EFEB617D2E17E919001485C1 /* Skin_CheckrUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Skin_CheckrUITests.swift; sourceTree = "<group>"; };
+		EFEB617E2E17E919001485C1 /* Skin_CheckrUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Skin_CheckrUITestsLaunchTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
-
-/* Begin PBXFileSystemSynchronizedRootGroup section */
-		EFEB61392E17E71D001485C1 /* Skin Checkr */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = "Skin Checkr";
-			sourceTree = "<group>";
-		};
-		EFEB61482E17E71E001485C1 /* Skin CheckrTests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = "Skin CheckrTests";
-			sourceTree = "<group>";
-		};
-		EFEB61522E17E71E001485C1 /* Skin CheckrUITests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = "Skin CheckrUITests";
-			sourceTree = "<group>";
-		};
-/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		EFEB61342E17E71D001485C1 /* Frameworks */ = {
@@ -75,9 +73,9 @@
 		EFEB612E2E17E71D001485C1 = {
 			isa = PBXGroup;
 			children = (
-				EFEB61392E17E71D001485C1 /* Skin Checkr */,
-				EFEB61482E17E71E001485C1 /* Skin CheckrTests */,
-				EFEB61522E17E71E001485C1 /* Skin CheckrUITests */,
+				EFEB61762E17E914001485C1 /* Skin Checkr */,
+				EFEB617B2E17E916001485C1 /* Skin CheckrTests */,
+				EFEB617F2E17E919001485C1 /* Skin CheckrUITests */,
 				EFEB61382E17E71D001485C1 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -90,6 +88,34 @@
 				EFEB614F2E17E71E001485C1 /* Skin CheckrUITests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		EFEB61762E17E914001485C1 /* Skin Checkr */ = {
+			isa = PBXGroup;
+			children = (
+				EFEB61722E17E914001485C1 /* Assets.xcassets */,
+				EFEB61732E17E914001485C1 /* ContentView.swift */,
+				EFEB61742E17E914001485C1 /* Skin_Checkr.entitlements */,
+				EFEB61752E17E914001485C1 /* Skin_CheckrApp.swift */,
+			);
+			path = "Skin Checkr";
+			sourceTree = "<group>";
+		};
+		EFEB617B2E17E916001485C1 /* Skin CheckrTests */ = {
+			isa = PBXGroup;
+			children = (
+				EFEB617A2E17E916001485C1 /* Skin_CheckrTests.swift */,
+			);
+			path = "Skin CheckrTests";
+			sourceTree = "<group>";
+		};
+		EFEB617F2E17E919001485C1 /* Skin CheckrUITests */ = {
+			isa = PBXGroup;
+			children = (
+				EFEB617D2E17E919001485C1 /* Skin_CheckrUITests.swift */,
+				EFEB617E2E17E919001485C1 /* Skin_CheckrUITestsLaunchTests.swift */,
+			);
+			path = "Skin CheckrUITests";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -106,9 +132,6 @@
 			buildRules = (
 			);
 			dependencies = (
-			);
-			fileSystemSynchronizedGroups = (
-				EFEB61392E17E71D001485C1 /* Skin Checkr */,
 			);
 			name = "Skin Checkr";
 			packageProductDependencies = (
@@ -130,9 +153,6 @@
 			dependencies = (
 				EFEB61472E17E71E001485C1 /* PBXTargetDependency */,
 			);
-			fileSystemSynchronizedGroups = (
-				EFEB61482E17E71E001485C1 /* Skin CheckrTests */,
-			);
 			name = "Skin CheckrTests";
 			packageProductDependencies = (
 			);
@@ -152,9 +172,6 @@
 			);
 			dependencies = (
 				EFEB61512E17E71E001485C1 /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				EFEB61522E17E71E001485C1 /* Skin CheckrUITests */,
 			);
 			name = "Skin CheckrUITests";
 			packageProductDependencies = (
@@ -212,6 +229,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EFEB61792E17E914001485C1 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -236,6 +254,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EFEB61772E17E914001485C1 /* ContentView.swift in Sources */,
+				EFEB61782E17E914001485C1 /* Skin_CheckrApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -243,6 +263,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EFEB617C2E17E916001485C1 /* Skin_CheckrTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -250,6 +271,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EFEB61802E17E919001485C1 /* Skin_CheckrUITests.swift in Sources */,
+				EFEB61812E17E919001485C1 /* Skin_CheckrUITestsLaunchTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -407,7 +430,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 15.5;
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 0.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.emberforgeapps.Skin-Checkr";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
@@ -444,7 +467,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 15.5;
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 0.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.emberforgeapps.Skin-Checkr";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
