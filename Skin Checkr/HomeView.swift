@@ -20,25 +20,17 @@ struct ScanReminder: Identifiable {
     var dueDate: Date
 }
 
-struct SkinScannerView: View {
-    // Define light blue color palette
-    let skyBlue = Color(red: 0.35, green: 0.60, blue: 0.80)          // Sky blue (primary)
-    let lightBlue = Color(red: 0.65, green: 0.85, blue: 1.00)        // Light blue (secondary)
-    let paleBlue = Color(red: 0.85, green: 0.95, blue: 1.00)         // Pale blue for subtle elements
-    let deeperBlue = Color(red: 0.20, green: 0.40, blue: 0.75)       // Deeper blue for contrast
-    let darkBlue = Color(red: 0.10, green: 0.25, blue: 0.45)         // Dark blue for backgrounds
-    
+struct HomeView: View {
     @State private var reminders: [ScanReminder] = [
         ScanReminder(location: "Right Shoulder", dueDate: Date())
     ]
     
     var body: some View {
         ZStack {
-            // Gradient background with premium purple colors
             LinearGradient(
                 gradient: Gradient(colors: [
-                    darkBlue,
-                    deeperBlue
+                    Color("darkBlue"),
+                    Color("deeperBlue")
                 ]),
                 startPoint: .topLeading,
                 endPoint: .bottomTrailing
@@ -47,32 +39,30 @@ struct SkinScannerView: View {
             
             // Background decorative elements
             Circle()
-                .fill(skyBlue.opacity(0.3))
+                .fill(Color("skyBlue").opacity(0.3))
                 .frame(width: 250, height: 250)
                 .blur(radius: 50)
                 .offset(x: -100, y: -150)
             
             Circle()
-                .fill(lightBlue.opacity(0.4))
+                .fill(Color("lightBlue").opacity(0.4))
                 .frame(width: 300, height: 300)
                 .blur(radius: 60)
                 .offset(x: 150, y: 100)
             
             // Main content
             VStack(spacing: 30) {
-                // Modern glass header with glow effect
                 Text("Skin Checkr")
                     .font(.system(size: 50, weight: .bold))
                     .foregroundColor(.white)
-                // Tagline
+                
                 Text("Advanced AI analysis of your skin condition")
                     .font(.system(size: 16, weight: .medium))
-                    .foregroundColor(paleBlue)
+                    .foregroundColor(Color("paleBlue"))
                     .padding(.top, -15)
                 
                 Spacer()
                 
-                // Glass scan button
                 Button(action: {}) {
                     HStack(spacing: 12) {
                         Image(systemName: "plus")
@@ -82,14 +72,13 @@ struct SkinScannerView: View {
                     }
                     .frame(width: 260, height: 60)
                     .foregroundColor(.white)
-                    .background(skyBlue)
+                    .background(Color("skyBlue"))
                     .cornerRadius(30)
-                    .shadow(color: deeperBlue.opacity(0.3), radius: 10, x: 0, y: 5)
+                    .shadow(color: Color("deeperBlue").opacity(0.3), radius: 10, x: 0, y: 5)
                 }
                 
                 Spacer()
                 
-                // Glass reminder card
                 VStack(alignment: .leading, spacing: 15) {
                     Text("Reminder")
                         .font(.system(size: 14, weight: .semibold))
@@ -108,37 +97,34 @@ struct SkinScannerView: View {
                                 .foregroundColor(.white)
                                 .padding(.horizontal, 20)
                                 .padding(.vertical, 10)
-                                .background(skyBlue)
+                                .background(Color("skyBlue"))
                                 .cornerRadius(20)
                         }
                     }
                 }
                 .padding(25)
-                .background(skyBlue.opacity(0.2))
+                .background(Color("skyBlue").opacity(0.2))
                 .cornerRadius(20)
                 .overlay(
                     RoundedRectangle(cornerRadius: 20)
-                        .stroke(lightBlue, lineWidth: 1)
+                        .stroke(Color("lightBlue"), lineWidth: 1)
                 )
                 .shadow(color: Color.black.opacity(0.15), radius: 10, x: 0, y: 5)
                 .padding(.horizontal, 20)
                 
                 Spacer()
                 
-    
-                
-                // Glass tab bar
                 HStack(spacing: 0) {
-                    TabItemGlass(icon: "house.fill", title: "Home", isSelected: true, accentColor: lightBlue)
-                    TabItemGlass(icon: "figure.stand", title: "Body Map", isSelected: false, accentColor: lightBlue)
-                    TabItemGlass(icon: "clock.arrow.circlepath", title: "History", isSelected: false, accentColor: lightBlue)
+                    TabItemGlass(icon: "house.fill", title: "Home", isSelected: true, accentColor: Color("lightBlue"))
+                    TabItemGlass(icon: "figure.stand", title: "Body Map", isSelected: false, accentColor: Color("lightBlue"))
+                    TabItemGlass(icon: "clock.arrow.circlepath", title: "History", isSelected: false, accentColor: Color("lightBlue"))
                 }
                 .padding(.vertical, 15)
-                .background(skyBlue.opacity(0.2))
+                .background(Color("skyBlue").opacity(0.2))
                 .cornerRadius(30)
                 .overlay(
                     RoundedRectangle(cornerRadius: 30)
-                        .stroke(lightBlue, lineWidth: 1)
+                        .stroke(Color("lightBlue"), lineWidth: 1)
                 )
                 .shadow(color: Color.black.opacity(0.15), radius: 10, x: 0, y: 5)
                 .padding(.horizontal, 20)
@@ -168,6 +154,6 @@ struct TabItemGlass: View {
 
 struct SkinScannerView_Previews: PreviewProvider {
     static var previews: some View {
-        SkinScannerView()
+        HomeView()
     }
 }

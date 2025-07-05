@@ -7,7 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		EFEB61772E17E914001485C1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFEB61732E17E914001485C1 /* ContentView.swift */; };
+		EF78E6722E19ACA9006AFF44 /* ResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF78E6712E19ACA9006AFF44 /* ResultsView.swift */; };
+		EF78E6742E19ADFE006AFF44 /* ResultsView 2.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF78E6732E19ADFE006AFF44 /* ResultsView 2.swift */; };
+		EF78E6762E19B70E006AFF44 /* GetImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF78E6752E19B70E006AFF44 /* GetImageView.swift */; };
+		EF78E6782E19B73E006AFF44 /* SavedPhotosLibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF78E6772E19B73E006AFF44 /* SavedPhotosLibraryView.swift */; };
+		EF78E67A2E19B7BB006AFF44 /* CameraInterfaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF78E6792E19B7BB006AFF44 /* CameraInterfaceView.swift */; };
+		EF78E67C2E19B82F006AFF44 /* PhotosConfirmationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF78E67B2E19B82F006AFF44 /* PhotosConfirmationView.swift */; };
+		EFEB61772E17E914001485C1 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFEB61732E17E914001485C1 /* HomeView.swift */; };
 		EFEB61782E17E914001485C1 /* Skin_CheckrApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFEB61752E17E914001485C1 /* Skin_CheckrApp.swift */; };
 		EFEB61792E17E914001485C1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EFEB61722E17E914001485C1 /* Assets.xcassets */; };
 		EFEB617C2E17E916001485C1 /* Skin_CheckrTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFEB617A2E17E916001485C1 /* Skin_CheckrTests.swift */; };
@@ -33,11 +39,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		EF78E6712E19ACA9006AFF44 /* ResultsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsView.swift; sourceTree = "<group>"; };
+		EF78E6732E19ADFE006AFF44 /* ResultsView 2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ResultsView 2.swift"; sourceTree = "<group>"; };
+		EF78E6752E19B70E006AFF44 /* GetImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetImageView.swift; sourceTree = "<group>"; };
+		EF78E6772E19B73E006AFF44 /* SavedPhotosLibraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedPhotosLibraryView.swift; sourceTree = "<group>"; };
+		EF78E6792E19B7BB006AFF44 /* CameraInterfaceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraInterfaceView.swift; sourceTree = "<group>"; };
+		EF78E67B2E19B82F006AFF44 /* PhotosConfirmationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosConfirmationView.swift; sourceTree = "<group>"; };
 		EFEB61372E17E71D001485C1 /* Skin Checkr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Skin Checkr.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFEB61452E17E71E001485C1 /* Skin CheckrTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Skin CheckrTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFEB614F2E17E71E001485C1 /* Skin CheckrUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Skin CheckrUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFEB61722E17E914001485C1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		EFEB61732E17E914001485C1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		EFEB61732E17E914001485C1 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		EFEB61742E17E914001485C1 /* Skin_Checkr.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Skin_Checkr.entitlements; sourceTree = "<group>"; };
 		EFEB61752E17E914001485C1 /* Skin_CheckrApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Skin_CheckrApp.swift; sourceTree = "<group>"; };
 		EFEB617A2E17E916001485C1 /* Skin_CheckrTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Skin_CheckrTests.swift; sourceTree = "<group>"; };
@@ -94,9 +106,15 @@
 			isa = PBXGroup;
 			children = (
 				EFEB61722E17E914001485C1 /* Assets.xcassets */,
-				EFEB61732E17E914001485C1 /* ContentView.swift */,
 				EFEB61742E17E914001485C1 /* Skin_Checkr.entitlements */,
+				EFEB61732E17E914001485C1 /* HomeView.swift */,
 				EFEB61752E17E914001485C1 /* Skin_CheckrApp.swift */,
+				EF78E6732E19ADFE006AFF44 /* ResultsView 2.swift */,
+				EF78E6712E19ACA9006AFF44 /* ResultsView.swift */,
+				EF78E6752E19B70E006AFF44 /* GetImageView.swift */,
+				EF78E6792E19B7BB006AFF44 /* CameraInterfaceView.swift */,
+				EF78E6772E19B73E006AFF44 /* SavedPhotosLibraryView.swift */,
+				EF78E67B2E19B82F006AFF44 /* PhotosConfirmationView.swift */,
 			);
 			path = "Skin Checkr";
 			sourceTree = "<group>";
@@ -254,7 +272,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EFEB61772E17E914001485C1 /* ContentView.swift in Sources */,
+				EF78E67C2E19B82F006AFF44 /* PhotosConfirmationView.swift in Sources */,
+				EF78E6762E19B70E006AFF44 /* GetImageView.swift in Sources */,
+				EFEB61772E17E914001485C1 /* HomeView.swift in Sources */,
+				EF78E6742E19ADFE006AFF44 /* ResultsView 2.swift in Sources */,
+				EF78E67A2E19B7BB006AFF44 /* CameraInterfaceView.swift in Sources */,
+				EF78E6782E19B73E006AFF44 /* SavedPhotosLibraryView.swift in Sources */,
+				EF78E6722E19ACA9006AFF44 /* ResultsView.swift in Sources */,
 				EFEB61782E17E914001485C1 /* Skin_CheckrApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -11,7 +11,7 @@ import SwiftUI
 struct Skin_CheckrApp: App {
     var body: some Scene {
         WindowGroup {
-            SkinScannerView()
+            HomeView()
         }
     }
 }
