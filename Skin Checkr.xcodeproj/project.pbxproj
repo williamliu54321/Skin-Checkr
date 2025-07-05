@@ -13,6 +13,7 @@
 		EF78E6782E19B73E006AFF44 /* SavedPhotosLibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF78E6772E19B73E006AFF44 /* SavedPhotosLibraryView.swift */; };
 		EF78E67A2E19B7BB006AFF44 /* CameraInterfaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF78E6792E19B7BB006AFF44 /* CameraInterfaceView.swift */; };
 		EF78E67C2E19B82F006AFF44 /* PhotosConfirmationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF78E67B2E19B82F006AFF44 /* PhotosConfirmationView.swift */; };
+		EF78E67E2E19BCAA006AFF44 /* ScanHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF78E67D2E19BCAA006AFF44 /* ScanHistoryView.swift */; };
 		EFEB61772E17E914001485C1 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFEB61732E17E914001485C1 /* HomeView.swift */; };
 		EFEB61782E17E914001485C1 /* Skin_CheckrApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFEB61752E17E914001485C1 /* Skin_CheckrApp.swift */; };
 		EFEB61792E17E914001485C1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EFEB61722E17E914001485C1 /* Assets.xcassets */; };
@@ -45,6 +46,7 @@
 		EF78E6772E19B73E006AFF44 /* SavedPhotosLibraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedPhotosLibraryView.swift; sourceTree = "<group>"; };
 		EF78E6792E19B7BB006AFF44 /* CameraInterfaceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraInterfaceView.swift; sourceTree = "<group>"; };
 		EF78E67B2E19B82F006AFF44 /* PhotosConfirmationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosConfirmationView.swift; sourceTree = "<group>"; };
+		EF78E67D2E19BCAA006AFF44 /* ScanHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanHistoryView.swift; sourceTree = "<group>"; };
 		EFEB61372E17E71D001485C1 /* Skin Checkr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Skin Checkr.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFEB61452E17E71E001485C1 /* Skin CheckrTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Skin CheckrTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFEB614F2E17E71E001485C1 /* Skin CheckrUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Skin CheckrUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -107,6 +109,7 @@
 			children = (
 				EFEB61722E17E914001485C1 /* Assets.xcassets */,
 				EFEB61742E17E914001485C1 /* Skin_Checkr.entitlements */,
+				EF78E67D2E19BCAA006AFF44 /* ScanHistoryView.swift */,
 				EFEB61732E17E914001485C1 /* HomeView.swift */,
 				EFEB61752E17E914001485C1 /* Skin_CheckrApp.swift */,
 				EF78E6732E19ADFE006AFF44 /* ResultsView 2.swift */,
@@ -280,6 +283,7 @@
 				EF78E6782E19B73E006AFF44 /* SavedPhotosLibraryView.swift in Sources */,
 				EF78E6722E19ACA9006AFF44 /* ResultsView.swift in Sources */,
 				EFEB61782E17E914001485C1 /* Skin_CheckrApp.swift in Sources */,
+				EF78E67E2E19BCAA006AFF44 /* ScanHistoryView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
