@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EF16793A2E1BF77E00DBE05F /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF1679392E1BF77E00DBE05F /* RootView.swift */; };
+		EF16793C2E1BFA2100DBE05F /* RootViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF16793B2E1BFA2100DBE05F /* RootViewModel.swift */; };
+		EF16793F2E1C1E3A00DBE05F /* SubscriptionStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF16793E2E1C1E3A00DBE05F /* SubscriptionStatus.swift */; };
+		EF1679412E1C1E5A00DBE05F /* SubscriptionRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF1679402E1C1E5A00DBE05F /* SubscriptionRepository.swift */; };
+		EF1679432E1C1EA900DBE05F /* ListenForSubscriptionChangesUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF1679422E1C1EA900DBE05F /* ListenForSubscriptionChangesUseCase.swift */; };
 		EF78E6722E19ACA9006AFF44 /* ResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF78E6712E19ACA9006AFF44 /* ResultsView.swift */; };
 		EF78E6742E19ADFE006AFF44 /* ResultsView 2.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF78E6732E19ADFE006AFF44 /* ResultsView 2.swift */; };
 		EF78E6762E19B70E006AFF44 /* GetImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF78E6752E19B70E006AFF44 /* GetImageView.swift */; };
@@ -41,6 +46,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		EF1679392E1BF77E00DBE05F /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
+		EF16793B2E1BFA2100DBE05F /* RootViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewModel.swift; sourceTree = "<group>"; };
+		EF16793E2E1C1E3A00DBE05F /* SubscriptionStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionStatus.swift; sourceTree = "<group>"; };
+		EF1679402E1C1E5A00DBE05F /* SubscriptionRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionRepository.swift; sourceTree = "<group>"; };
+		EF1679422E1C1EA900DBE05F /* ListenForSubscriptionChangesUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListenForSubscriptionChangesUseCase.swift; sourceTree = "<group>"; };
 		EF78E6712E19ACA9006AFF44 /* ResultsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsView.swift; sourceTree = "<group>"; };
 		EF78E6732E19ADFE006AFF44 /* ResultsView 2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ResultsView 2.swift"; sourceTree = "<group>"; };
 		EF78E6752E19B70E006AFF44 /* GetImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetImageView.swift; sourceTree = "<group>"; };
@@ -86,6 +96,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EF16793D2E1C1E2700DBE05F /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				EF16793E2E1C1E3A00DBE05F /* SubscriptionStatus.swift */,
+				EF1679402E1C1E5A00DBE05F /* SubscriptionRepository.swift */,
+				EF1679422E1C1EA900DBE05F /* ListenForSubscriptionChangesUseCase.swift */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
 		EF78E68F2E1A6A58006AFF44 /* Components */ = {
 			isa = PBXGroup;
 			children = (
@@ -117,10 +137,13 @@
 		EFEB61762E17E914001485C1 /* Skin Checkr */ = {
 			isa = PBXGroup;
 			children = (
+				EF16793D2E1C1E2700DBE05F /* Domain */,
 				EFEB61752E17E914001485C1 /* Skin_CheckrApp.swift */,
 				EF78E68F2E1A6A58006AFF44 /* Components */,
 				EFEB61722E17E914001485C1 /* Assets.xcassets */,
 				EFEB61742E17E914001485C1 /* Skin_Checkr.entitlements */,
+				EF16793B2E1BFA2100DBE05F /* RootViewModel.swift */,
+				EF1679392E1BF77E00DBE05F /* RootView.swift */,
 				EF78E67D2E19BCAA006AFF44 /* ScanHistoryView.swift */,
 				EFEB61732E17E914001485C1 /* HomeView.swift */,
 				EF78E6732E19ADFE006AFF44 /* ResultsView 2.swift */,
@@ -286,6 +309,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EF1679412E1C1E5A00DBE05F /* SubscriptionRepository.swift in Sources */,
 				EF78E67C2E19B82F006AFF44 /* PhotosConfirmationView.swift in Sources */,
 				EF78E6762E19B70E006AFF44 /* GetImageView.swift in Sources */,
 				EFEB61772E17E914001485C1 /* HomeView.swift in Sources */,
@@ -296,6 +320,10 @@
 				EF78E6722E19ACA9006AFF44 /* ResultsView.swift in Sources */,
 				EFEB61782E17E914001485C1 /* Skin_CheckrApp.swift in Sources */,
 				EF78E67E2E19BCAA006AFF44 /* ScanHistoryView.swift in Sources */,
+				EF16793C2E1BFA2100DBE05F /* RootViewModel.swift in Sources */,
+				EF16793A2E1BF77E00DBE05F /* RootView.swift in Sources */,
+				EF16793F2E1C1E3A00DBE05F /* SubscriptionStatus.swift in Sources */,
+				EF1679432E1C1EA900DBE05F /* ListenForSubscriptionChangesUseCase.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

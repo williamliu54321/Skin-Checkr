@@ -14,7 +14,6 @@ struct ScanHistoryView: View {
     var body: some View {
         ZStack {
             
-            AppBackgroundView()
         
             // Main content
             VStack(spacing: 0) {
