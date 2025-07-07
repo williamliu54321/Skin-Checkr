@@ -12,6 +12,8 @@
 		EF16793F2E1C1E3A00DBE05F /* SubscriptionStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF16793E2E1C1E3A00DBE05F /* SubscriptionStatus.swift */; };
 		EF1679412E1C1E5A00DBE05F /* SubscriptionRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF1679402E1C1E5A00DBE05F /* SubscriptionRepository.swift */; };
 		EF1679432E1C1EA900DBE05F /* ListenForSubscriptionChangesUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF1679422E1C1EA900DBE05F /* ListenForSubscriptionChangesUseCase.swift */; };
+		EF1679462E1C2B8C00DBE05F /* SuperwallSubscriptionRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF1679452E1C2B8C00DBE05F /* SuperwallSubscriptionRepository.swift */; };
+		EF1679492E1C343E00DBE05F /* SuperwallKit in Frameworks */ = {isa = PBXBuildFile; productRef = EF1679482E1C343E00DBE05F /* SuperwallKit */; };
 		EF78E6722E19ACA9006AFF44 /* ResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF78E6712E19ACA9006AFF44 /* ResultsView.swift */; };
 		EF78E6742E19ADFE006AFF44 /* ResultsView 2.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF78E6732E19ADFE006AFF44 /* ResultsView 2.swift */; };
 		EF78E6762E19B70E006AFF44 /* GetImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF78E6752E19B70E006AFF44 /* GetImageView.swift */; };
@@ -51,6 +53,7 @@
 		EF16793E2E1C1E3A00DBE05F /* SubscriptionStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionStatus.swift; sourceTree = "<group>"; };
 		EF1679402E1C1E5A00DBE05F /* SubscriptionRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionRepository.swift; sourceTree = "<group>"; };
 		EF1679422E1C1EA900DBE05F /* ListenForSubscriptionChangesUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListenForSubscriptionChangesUseCase.swift; sourceTree = "<group>"; };
+		EF1679452E1C2B8C00DBE05F /* SuperwallSubscriptionRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperwallSubscriptionRepository.swift; sourceTree = "<group>"; };
 		EF78E6712E19ACA9006AFF44 /* ResultsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsView.swift; sourceTree = "<group>"; };
 		EF78E6732E19ADFE006AFF44 /* ResultsView 2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ResultsView 2.swift"; sourceTree = "<group>"; };
 		EF78E6752E19B70E006AFF44 /* GetImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetImageView.swift; sourceTree = "<group>"; };
@@ -76,6 +79,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EF1679492E1C343E00DBE05F /* SuperwallKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -104,6 +108,14 @@
 				EF1679422E1C1EA900DBE05F /* ListenForSubscriptionChangesUseCase.swift */,
 			);
 			path = Domain;
+			sourceTree = "<group>";
+		};
+		EF1679442E1C2A4400DBE05F /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				EF1679452E1C2B8C00DBE05F /* SuperwallSubscriptionRepository.swift */,
+			);
+			path = Data;
 			sourceTree = "<group>";
 		};
 		EF78E68F2E1A6A58006AFF44 /* Components */ = {
@@ -138,6 +150,7 @@
 			isa = PBXGroup;
 			children = (
 				EF16793D2E1C1E2700DBE05F /* Domain */,
+				EF1679442E1C2A4400DBE05F /* Data */,
 				EFEB61752E17E914001485C1 /* Skin_CheckrApp.swift */,
 				EF78E68F2E1A6A58006AFF44 /* Components */,
 				EFEB61722E17E914001485C1 /* Assets.xcassets */,
@@ -190,6 +203,7 @@
 			);
 			name = "Skin Checkr";
 			packageProductDependencies = (
+				EF1679482E1C343E00DBE05F /* SuperwallKit */,
 			);
 			productName = "Skin Checkr";
 			productReference = EFEB61372E17E71D001485C1 /* Skin Checkr.app */;
@@ -267,6 +281,9 @@
 			);
 			mainGroup = EFEB612E2E17E71D001485C1;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				EF1679472E1C343E00DBE05F /* XCRemoteSwiftPackageReference "Superwall-iOS" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = EFEB61382E17E71D001485C1 /* Products */;
 			projectDirPath = "";
@@ -313,6 +330,7 @@
 				EF78E67C2E19B82F006AFF44 /* PhotosConfirmationView.swift in Sources */,
 				EF78E6762E19B70E006AFF44 /* GetImageView.swift in Sources */,
 				EFEB61772E17E914001485C1 /* HomeView.swift in Sources */,
+				EF1679462E1C2B8C00DBE05F /* SuperwallSubscriptionRepository.swift in Sources */,
 				EF78E6742E19ADFE006AFF44 /* ResultsView 2.swift in Sources */,
 				EF78E67A2E19B7BB006AFF44 /* CameraInterfaceView.swift in Sources */,
 				EF78E6782E19B73E006AFF44 /* SavedPhotosLibraryView.swift in Sources */,
@@ -674,6 +692,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		EF1679472E1C343E00DBE05F /* XCRemoteSwiftPackageReference "Superwall-iOS" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/superwall/Superwall-iOS";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.5.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		EF1679482E1C343E00DBE05F /* SuperwallKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EF1679472E1C343E00DBE05F /* XCRemoteSwiftPackageReference "Superwall-iOS" */;
+			productName = SuperwallKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = EFEB612F2E17E71D001485C1 /* Project object */;
 }
