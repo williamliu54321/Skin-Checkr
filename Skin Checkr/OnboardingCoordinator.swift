@@ -15,14 +15,16 @@ class OnboardingCoordinator: ObservableObject {
     // Navigation methods
     @MainActor
     func next() {
-        if currentStep < 3 {  // Assuming 4 steps (0-3)
-            currentStep += 1
-        } else {
-            // If we're at the last step, complete onboarding
+        print("next() called with currentStep: \(currentStep)")
+        if currentStep >= 3 {
+            print("Onboarding completed")
             completeOnboarding()
+        } else {
+            currentStep += 1
         }
     }
-    
+
+
     @MainActor
     func back() {
         if currentStep > 0 {

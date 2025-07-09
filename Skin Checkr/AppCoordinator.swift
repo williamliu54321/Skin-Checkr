@@ -27,7 +27,7 @@ final class AppCoordinator: ObservableObject {
         if !hasCompletedOnboarding {
             startOnboarding()
         } else {
-            checkSubscriptionStatusAndUpdateUI()
+            self.currentScreen = .home
         }
     }
     
@@ -50,8 +50,7 @@ final class AppCoordinator: ObservableObject {
         // Clean up
         self.onboardingCoordinator = nil
         
-        // Check subscription status
-        checkSubscriptionStatusAndUpdateUI()
+        self.currentScreen = .home
     }
 
     func makeHomeView() -> some View {

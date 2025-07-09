@@ -210,7 +210,7 @@ struct OnboardingView: View {
             
             Spacer()
             
-            Button(action: { }) {
+            Button(action: { coordinator.completeOnboarding() }) {
                 Text("Start Free Trial")
                     .font(.headline)
                     .foregroundColor(.white)
