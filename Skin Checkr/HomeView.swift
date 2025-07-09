@@ -21,6 +21,7 @@ struct ScanReminder: Identifiable {
 }
 
 struct HomeView: View {
+    @ObservedObject var viewModel: HomeViewModel
     @State private var reminders: [ScanReminder] = [
         ScanReminder(location: "Right Shoulder", dueDate: Date())
     ]
@@ -55,6 +56,11 @@ struct HomeView: View {
                 Text("Skin Checkr")
                     .font(.system(size: 50, weight: .bold))
                     .foregroundColor(.white)
+                
+                Button("Start Workout") {
+                    viewModel.onStartWorkout()
+                }
+
                 
                 Text("Advanced AI analysis of your skin condition")
                     .font(.system(size: 16, weight: .medium))
@@ -154,6 +160,13 @@ struct TabItemGlass: View {
 
 struct SkinScannerView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView()
+        HomeView(
+            viewModel: HomeViewModel(
+                authRepository: MockAuthRepository(),
+                onStartWorkout: {
+                    // No-op for preview
+                }
+            )
+        )
     }
 }

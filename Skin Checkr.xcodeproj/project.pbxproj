@@ -7,12 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		EF16793A2E1BF77E00DBE05F /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF1679392E1BF77E00DBE05F /* RootView.swift */; };
-		EF16793C2E1BFA2100DBE05F /* RootViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF16793B2E1BFA2100DBE05F /* RootViewModel.swift */; };
-		EF16793F2E1C1E3A00DBE05F /* SubscriptionStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF16793E2E1C1E3A00DBE05F /* SubscriptionStatus.swift */; };
-		EF1679412E1C1E5A00DBE05F /* SubscriptionRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF1679402E1C1E5A00DBE05F /* SubscriptionRepository.swift */; };
-		EF1679432E1C1EA900DBE05F /* ListenForSubscriptionChangesUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF1679422E1C1EA900DBE05F /* ListenForSubscriptionChangesUseCase.swift */; };
-		EF1679462E1C2B8C00DBE05F /* SuperwallSubscriptionRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF1679452E1C2B8C00DBE05F /* SuperwallSubscriptionRepository.swift */; };
 		EF1679492E1C343E00DBE05F /* SuperwallKit in Frameworks */ = {isa = PBXBuildFile; productRef = EF1679482E1C343E00DBE05F /* SuperwallKit */; };
 		EF78E6722E19ACA9006AFF44 /* ResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF78E6712E19ACA9006AFF44 /* ResultsView.swift */; };
 		EF78E6742E19ADFE006AFF44 /* ResultsView 2.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF78E6732E19ADFE006AFF44 /* ResultsView 2.swift */; };
@@ -22,8 +16,14 @@
 		EF78E67C2E19B82F006AFF44 /* PhotosConfirmationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF78E67B2E19B82F006AFF44 /* PhotosConfirmationView.swift */; };
 		EF78E67E2E19BCAA006AFF44 /* ScanHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF78E67D2E19BCAA006AFF44 /* ScanHistoryView.swift */; };
 		EF78E6912E1A6A66006AFF44 /* AppBackgroundModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF78E6902E1A6A66006AFF44 /* AppBackgroundModifier.swift */; };
+		EFAC068D2E1DEC8C0072EB4A /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFAC068C2E1DEC850072EB4A /* AppCoordinator.swift */; };
+		EFAC068F2E1E923D0072EB4A /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFAC068E2E1E923D0072EB4A /* RootView.swift */; };
+		EFAC06912E1E92790072EB4A /* ViewModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFAC06902E1E92760072EB4A /* ViewModels.swift */; };
+		EFAC06932E1E92A10072EB4A /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFAC06922E1E929E0072EB4A /* LoginView.swift */; };
+		EFAC06952E1E94070072EB4A /* AuthRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFAC06942E1E94050072EB4A /* AuthRepository.swift */; };
+		EFAC06982E1E95240072EB4A /* SkinCheckrApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFAC06972E1E951E0072EB4A /* SkinCheckrApp.swift */; };
+		EFAC069A2E1E9D9A0072EB4A /* SubscriptionsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFAC06992E1E9D930072EB4A /* SubscriptionsRepository.swift */; };
 		EFEB61772E17E914001485C1 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFEB61732E17E914001485C1 /* HomeView.swift */; };
-		EFEB61782E17E914001485C1 /* Skin_CheckrApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFEB61752E17E914001485C1 /* Skin_CheckrApp.swift */; };
 		EFEB61792E17E914001485C1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EFEB61722E17E914001485C1 /* Assets.xcassets */; };
 		EFEB617C2E17E916001485C1 /* Skin_CheckrTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFEB617A2E17E916001485C1 /* Skin_CheckrTests.swift */; };
 		EFEB61802E17E919001485C1 /* Skin_CheckrUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFEB617D2E17E919001485C1 /* Skin_CheckrUITests.swift */; };
@@ -48,12 +48,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		EF1679392E1BF77E00DBE05F /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
-		EF16793B2E1BFA2100DBE05F /* RootViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewModel.swift; sourceTree = "<group>"; };
-		EF16793E2E1C1E3A00DBE05F /* SubscriptionStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionStatus.swift; sourceTree = "<group>"; };
-		EF1679402E1C1E5A00DBE05F /* SubscriptionRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionRepository.swift; sourceTree = "<group>"; };
-		EF1679422E1C1EA900DBE05F /* ListenForSubscriptionChangesUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListenForSubscriptionChangesUseCase.swift; sourceTree = "<group>"; };
-		EF1679452E1C2B8C00DBE05F /* SuperwallSubscriptionRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperwallSubscriptionRepository.swift; sourceTree = "<group>"; };
 		EF78E6712E19ACA9006AFF44 /* ResultsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsView.swift; sourceTree = "<group>"; };
 		EF78E6732E19ADFE006AFF44 /* ResultsView 2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ResultsView 2.swift"; sourceTree = "<group>"; };
 		EF78E6752E19B70E006AFF44 /* GetImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetImageView.swift; sourceTree = "<group>"; };
@@ -62,13 +56,19 @@
 		EF78E67B2E19B82F006AFF44 /* PhotosConfirmationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosConfirmationView.swift; sourceTree = "<group>"; };
 		EF78E67D2E19BCAA006AFF44 /* ScanHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanHistoryView.swift; sourceTree = "<group>"; };
 		EF78E6902E1A6A66006AFF44 /* AppBackgroundModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppBackgroundModifier.swift; sourceTree = "<group>"; };
+		EFAC068C2E1DEC850072EB4A /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		EFAC068E2E1E923D0072EB4A /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
+		EFAC06902E1E92760072EB4A /* ViewModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModels.swift; sourceTree = "<group>"; };
+		EFAC06922E1E929E0072EB4A /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		EFAC06942E1E94050072EB4A /* AuthRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRepository.swift; sourceTree = "<group>"; };
+		EFAC06972E1E951E0072EB4A /* SkinCheckrApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkinCheckrApp.swift; sourceTree = "<group>"; };
+		EFAC06992E1E9D930072EB4A /* SubscriptionsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionsRepository.swift; sourceTree = "<group>"; };
 		EFEB61372E17E71D001485C1 /* Skin Checkr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Skin Checkr.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFEB61452E17E71E001485C1 /* Skin CheckrTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Skin CheckrTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFEB614F2E17E71E001485C1 /* Skin CheckrUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Skin CheckrUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFEB61722E17E914001485C1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EFEB61732E17E914001485C1 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		EFEB61742E17E914001485C1 /* Skin_Checkr.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Skin_Checkr.entitlements; sourceTree = "<group>"; };
-		EFEB61752E17E914001485C1 /* Skin_CheckrApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Skin_CheckrApp.swift; sourceTree = "<group>"; };
 		EFEB617A2E17E916001485C1 /* Skin_CheckrTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Skin_CheckrTests.swift; sourceTree = "<group>"; };
 		EFEB617D2E17E919001485C1 /* Skin_CheckrUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Skin_CheckrUITests.swift; sourceTree = "<group>"; };
 		EFEB617E2E17E919001485C1 /* Skin_CheckrUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Skin_CheckrUITestsLaunchTests.swift; sourceTree = "<group>"; };
@@ -100,30 +100,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		EF16793D2E1C1E2700DBE05F /* Domain */ = {
-			isa = PBXGroup;
-			children = (
-				EF16793E2E1C1E3A00DBE05F /* SubscriptionStatus.swift */,
-				EF1679402E1C1E5A00DBE05F /* SubscriptionRepository.swift */,
-				EF1679422E1C1EA900DBE05F /* ListenForSubscriptionChangesUseCase.swift */,
-			);
-			path = Domain;
-			sourceTree = "<group>";
-		};
-		EF1679442E1C2A4400DBE05F /* Data */ = {
-			isa = PBXGroup;
-			children = (
-				EF1679452E1C2B8C00DBE05F /* SuperwallSubscriptionRepository.swift */,
-			);
-			path = Data;
-			sourceTree = "<group>";
-		};
 		EF78E68F2E1A6A58006AFF44 /* Components */ = {
 			isa = PBXGroup;
 			children = (
 				EF78E6902E1A6A66006AFF44 /* AppBackgroundModifier.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		EFAC06962E1E940B0072EB4A /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				EFAC06992E1E9D930072EB4A /* SubscriptionsRepository.swift */,
+				EFAC06942E1E94050072EB4A /* AuthRepository.swift */,
+			);
+			path = Repositories;
 			sourceTree = "<group>";
 		};
 		EFEB612E2E17E71D001485C1 = {
@@ -149,14 +140,15 @@
 		EFEB61762E17E914001485C1 /* Skin Checkr */ = {
 			isa = PBXGroup;
 			children = (
-				EF16793D2E1C1E2700DBE05F /* Domain */,
-				EF1679442E1C2A4400DBE05F /* Data */,
-				EFEB61752E17E914001485C1 /* Skin_CheckrApp.swift */,
+				EFAC06972E1E951E0072EB4A /* SkinCheckrApp.swift */,
+				EFAC068C2E1DEC850072EB4A /* AppCoordinator.swift */,
+				EFAC06962E1E940B0072EB4A /* Repositories */,
 				EF78E68F2E1A6A58006AFF44 /* Components */,
 				EFEB61722E17E914001485C1 /* Assets.xcassets */,
 				EFEB61742E17E914001485C1 /* Skin_Checkr.entitlements */,
-				EF16793B2E1BFA2100DBE05F /* RootViewModel.swift */,
-				EF1679392E1BF77E00DBE05F /* RootView.swift */,
+				EFAC068E2E1E923D0072EB4A /* RootView.swift */,
+				EFAC06902E1E92760072EB4A /* ViewModels.swift */,
+				EFAC06922E1E929E0072EB4A /* LoginView.swift */,
 				EF78E67D2E19BCAA006AFF44 /* ScanHistoryView.swift */,
 				EFEB61732E17E914001485C1 /* HomeView.swift */,
 				EF78E6732E19ADFE006AFF44 /* ResultsView 2.swift */,
@@ -326,22 +318,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EF1679412E1C1E5A00DBE05F /* SubscriptionRepository.swift in Sources */,
 				EF78E67C2E19B82F006AFF44 /* PhotosConfirmationView.swift in Sources */,
+				EFAC068D2E1DEC8C0072EB4A /* AppCoordinator.swift in Sources */,
 				EF78E6762E19B70E006AFF44 /* GetImageView.swift in Sources */,
+				EFAC06952E1E94070072EB4A /* AuthRepository.swift in Sources */,
+				EFAC06982E1E95240072EB4A /* SkinCheckrApp.swift in Sources */,
 				EFEB61772E17E914001485C1 /* HomeView.swift in Sources */,
-				EF1679462E1C2B8C00DBE05F /* SuperwallSubscriptionRepository.swift in Sources */,
+				EFAC068F2E1E923D0072EB4A /* RootView.swift in Sources */,
 				EF78E6742E19ADFE006AFF44 /* ResultsView 2.swift in Sources */,
 				EF78E67A2E19B7BB006AFF44 /* CameraInterfaceView.swift in Sources */,
 				EF78E6782E19B73E006AFF44 /* SavedPhotosLibraryView.swift in Sources */,
 				EF78E6912E1A6A66006AFF44 /* AppBackgroundModifier.swift in Sources */,
 				EF78E6722E19ACA9006AFF44 /* ResultsView.swift in Sources */,
-				EFEB61782E17E914001485C1 /* Skin_CheckrApp.swift in Sources */,
+				EFAC069A2E1E9D9A0072EB4A /* SubscriptionsRepository.swift in Sources */,
+				EFAC06912E1E92790072EB4A /* ViewModels.swift in Sources */,
 				EF78E67E2E19BCAA006AFF44 /* ScanHistoryView.swift in Sources */,
-				EF16793C2E1BFA2100DBE05F /* RootViewModel.swift in Sources */,
-				EF16793A2E1BF77E00DBE05F /* RootView.swift in Sources */,
-				EF16793F2E1C1E3A00DBE05F /* SubscriptionStatus.swift in Sources */,
-				EF1679432E1C1EA900DBE05F /* ListenForSubscriptionChangesUseCase.swift in Sources */,
+				EFAC06932E1E92A10072EB4A /* LoginView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -500,6 +492,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Skin Checkr/Skin_Checkr.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 48DNC6L6NN;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
@@ -537,6 +530,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Skin Checkr/Skin_Checkr.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 48DNC6L6NN;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;

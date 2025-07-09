@@ -1,29 +1,23 @@
 //
-//  RootView.swift
+//  RootView 2.swift
 //  Skin Checkr
 //
-//  Created by William Liu on 2025-07-07.
+//  Created by William Liu on 2025-07-09.
 //
 
+import Foundation
 import SwiftUI
 
+
 struct RootView: View {
-    @ObservedObject var viewModel: RootViewModel
+    @ObservedObject var coordinator: AppCoordinator
 
     var body: some View {
-        // This is the core logic you asked for, implemented cleanly.
-        // The RootView switches its content based on the ViewModel's state.
-        switch viewModel.currentStatus {
-        case .subscribed:
-            HomeView()
-                .withAppBackground() // Apply the background only to the main app.
-        case .notSubscribed:
-            OnboardingView(viewModel: viewModel)
+        switch coordinator.currentScreen {
+        case .login:
+            coordinator.makeLoginView()
+        case .home:
+            coordinator.makeHomeView()
         }
     }
-}
-
-
-#Preview {
-    RootView()
 }
