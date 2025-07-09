@@ -5,8 +5,7 @@ import SuperwallKit
 struct SkinCheckrApp: App {
     // Initialize coordinator directly with fresh repository instances
     @StateObject private var coordinator = AppCoordinator(
-        authRepository: MockAuthRepository(),
-        subscriptionsRepository: MockSubscriptionsRepository()
+        authRepository: MockAuthRepository()
     )
     
     init() {

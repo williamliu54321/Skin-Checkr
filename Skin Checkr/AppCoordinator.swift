@@ -13,13 +13,10 @@ final class AppCoordinator: ObservableObject {
 
     // Dependencies
     private let authRepository: AuthRepository
-    private let subscriptionsRepository: SubscriptionsRepository
 
 
-    init(authRepository: AuthRepository,
-         subscriptionsRepository: SubscriptionsRepository) {
+    init(authRepository: AuthRepository) {
         self.authRepository = authRepository
-        self.subscriptionsRepository = subscriptionsRepository
     }
     
     // Factory method for LoginView
@@ -44,15 +41,25 @@ final class AppCoordinator: ObservableObject {
     }
     
     func startWorkout() {
-        Superwall.shared.register(placement: "StartWorkout") {
-            self.currentScreen = .home // or .workout if you have that case
-        }
-    }
-    
-    func paywallPass() {
-            Superwall.shared.register(placement: "StartWorkout") {
+        Task {
+            if await checkSubscriptionStatus() {
+                // Subscribed
                 self.currentScreen = .home
+            } else {
+                // Show paywall
+                Superwall.shared.register(placement: "StartWorkout") {
+                    self.currentScreen = .home
+                }
             }
         }
+    }
 
+    func checkSubscriptionStatus() async -> Bool {
+        let status = await Superwall.shared.subscriptionStatus
+        if case .active = status {
+            return true
+        } else {
+            return false
+        }
+    }
 }
