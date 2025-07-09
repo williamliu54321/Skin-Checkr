@@ -20,9 +20,9 @@
 		EFAC068F2E1E923D0072EB4A /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFAC068E2E1E923D0072EB4A /* RootView.swift */; };
 		EFAC06912E1E92790072EB4A /* ViewModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFAC06902E1E92760072EB4A /* ViewModels.swift */; };
 		EFAC06932E1E92A10072EB4A /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFAC06922E1E929E0072EB4A /* LoginView.swift */; };
-		EFAC06952E1E94070072EB4A /* AuthRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFAC06942E1E94050072EB4A /* AuthRepository.swift */; };
 		EFAC06982E1E95240072EB4A /* SkinCheckrApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFAC06972E1E951E0072EB4A /* SkinCheckrApp.swift */; };
-		EFAC069A2E1E9D9A0072EB4A /* SubscriptionsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFAC06992E1E9D930072EB4A /* SubscriptionsRepository.swift */; };
+		EFAC06A42E1EDC780072EB4A /* OnboardingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFAC06A32E1EDC720072EB4A /* OnboardingCoordinator.swift */; };
+		EFAC06AA2E1EDCD90072EB4A /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFAC06A92E1EDCD90072EB4A /* OnboardingView.swift */; };
 		EFEB61772E17E914001485C1 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFEB61732E17E914001485C1 /* HomeView.swift */; };
 		EFEB61792E17E914001485C1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EFEB61722E17E914001485C1 /* Assets.xcassets */; };
 		EFEB617C2E17E916001485C1 /* Skin_CheckrTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFEB617A2E17E916001485C1 /* Skin_CheckrTests.swift */; };
@@ -60,9 +60,9 @@
 		EFAC068E2E1E923D0072EB4A /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		EFAC06902E1E92760072EB4A /* ViewModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModels.swift; sourceTree = "<group>"; };
 		EFAC06922E1E929E0072EB4A /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
-		EFAC06942E1E94050072EB4A /* AuthRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRepository.swift; sourceTree = "<group>"; };
 		EFAC06972E1E951E0072EB4A /* SkinCheckrApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkinCheckrApp.swift; sourceTree = "<group>"; };
-		EFAC06992E1E9D930072EB4A /* SubscriptionsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionsRepository.swift; sourceTree = "<group>"; };
+		EFAC06A32E1EDC720072EB4A /* OnboardingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCoordinator.swift; sourceTree = "<group>"; };
+		EFAC06A92E1EDCD90072EB4A /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		EFEB61372E17E71D001485C1 /* Skin Checkr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Skin Checkr.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFEB61452E17E71E001485C1 /* Skin CheckrTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Skin CheckrTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFEB614F2E17E71E001485C1 /* Skin CheckrUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Skin CheckrUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -108,13 +108,12 @@
 			path = Components;
 			sourceTree = "<group>";
 		};
-		EFAC06962E1E940B0072EB4A /* Repositories */ = {
+		EFAC06A62E1EDCA90072EB4A /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				EFAC06992E1E9D930072EB4A /* SubscriptionsRepository.swift */,
-				EFAC06942E1E94050072EB4A /* AuthRepository.swift */,
+				EFAC06A92E1EDCD90072EB4A /* OnboardingView.swift */,
 			);
-			path = Repositories;
+			path = Views;
 			sourceTree = "<group>";
 		};
 		EFEB612E2E17E71D001485C1 = {
@@ -140,9 +139,10 @@
 		EFEB61762E17E914001485C1 /* Skin Checkr */ = {
 			isa = PBXGroup;
 			children = (
+				EFAC06A62E1EDCA90072EB4A /* Views */,
 				EFAC06972E1E951E0072EB4A /* SkinCheckrApp.swift */,
 				EFAC068C2E1DEC850072EB4A /* AppCoordinator.swift */,
-				EFAC06962E1E940B0072EB4A /* Repositories */,
+				EFAC06A32E1EDC720072EB4A /* OnboardingCoordinator.swift */,
 				EF78E68F2E1A6A58006AFF44 /* Components */,
 				EFEB61722E17E914001485C1 /* Assets.xcassets */,
 				EFEB61742E17E914001485C1 /* Skin_Checkr.entitlements */,
@@ -321,8 +321,8 @@
 				EF78E67C2E19B82F006AFF44 /* PhotosConfirmationView.swift in Sources */,
 				EFAC068D2E1DEC8C0072EB4A /* AppCoordinator.swift in Sources */,
 				EF78E6762E19B70E006AFF44 /* GetImageView.swift in Sources */,
-				EFAC06952E1E94070072EB4A /* AuthRepository.swift in Sources */,
 				EFAC06982E1E95240072EB4A /* SkinCheckrApp.swift in Sources */,
+				EFAC06A42E1EDC780072EB4A /* OnboardingCoordinator.swift in Sources */,
 				EFEB61772E17E914001485C1 /* HomeView.swift in Sources */,
 				EFAC068F2E1E923D0072EB4A /* RootView.swift in Sources */,
 				EF78E6742E19ADFE006AFF44 /* ResultsView 2.swift in Sources */,
@@ -330,8 +330,8 @@
 				EF78E6782E19B73E006AFF44 /* SavedPhotosLibraryView.swift in Sources */,
 				EF78E6912E1A6A66006AFF44 /* AppBackgroundModifier.swift in Sources */,
 				EF78E6722E19ACA9006AFF44 /* ResultsView.swift in Sources */,
-				EFAC069A2E1E9D9A0072EB4A /* SubscriptionsRepository.swift in Sources */,
 				EFAC06912E1E92790072EB4A /* ViewModels.swift in Sources */,
+				EFAC06AA2E1EDCD90072EB4A /* OnboardingView.swift in Sources */,
 				EF78E67E2E19BCAA006AFF44 /* ScanHistoryView.swift in Sources */,
 				EFAC06932E1E92A10072EB4A /* LoginView.swift in Sources */,
 			);

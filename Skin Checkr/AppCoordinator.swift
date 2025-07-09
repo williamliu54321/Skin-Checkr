@@ -5,49 +5,81 @@ import SuperwallKit
 @MainActor
 final class AppCoordinator: ObservableObject {
     enum Screen {
-        case login
+        case onboarding
         case home
     }
 
-    @Published var currentScreen: Screen = .login
+    @Published var currentScreen: Screen = .home
 
-    // Dependencies
-    private let authRepository: AuthRepository
+    private var onboardingCoordinator: OnboardingCoordinator?
 
-
-    init(authRepository: AuthRepository) {
-        self.authRepository = authRepository
+    init() {
+        Task {
+            self.checkInitialFlow()
+        }
     }
     
-    // Factory method for LoginView
-    func makeLoginView() -> some View {
-        let viewModel = LoginViewModel(
-            authRepository: authRepository,
-            onLoginSuccess: {
-                self.currentScreen = .home
-            }
+    func checkInitialFlow() {
+        let hasCompletedOnboarding = UserDefaults.standard.bool(forKey: "hasCompletedOnboarding")
+        
+        print("checkInitialFlow hasCompletedOnboarding: \(hasCompletedOnboarding)")
+        
+        if !hasCompletedOnboarding {
+            startOnboarding()
+        } else {
+            checkSubscriptionStatusAndUpdateUI()
+        }
+    }
+    
+    func startOnboarding() {
+        
+        print("startOnboarding")
+        
+        let coordinator = OnboardingCoordinator(
+            parentCoordinator: self
         )
-        return LoginView(viewModel: viewModel)
+        
+        // Store the coordinator
+        self.onboardingCoordinator = coordinator
+        
+        // Update UI
+        self.currentScreen = .onboarding
+    }
+    
+    func onboardingCompleted() {
+        // Clean up
+        self.onboardingCoordinator = nil
+        
+        // Check subscription status
+        checkSubscriptionStatusAndUpdateUI()
     }
 
     func makeHomeView() -> some View {
         let viewModel = HomeViewModel(
-            authRepository: authRepository,
-            onStartWorkout: { [weak self] in
-                self?.startWorkout()
+            placePaywall: { [weak self] in
+                self?.startMainPaywall()
             }
         )
         return HomeView(viewModel: viewModel)
     }
     
-    func startWorkout() {
+    func makeOnboardingView() -> some View {
+        if let coordinator = onboardingCoordinator {
+            return AnyView(OnboardingView(coordinator: coordinator))
+        } else {
+            return AnyView(ProgressView("Loading..."))
+        }
+    }
+
+        
+    func startMainPaywall() {
         Task {
             if await checkSubscriptionStatus() {
                 // Subscribed
                 self.currentScreen = .home
             } else {
                 // Show paywall
-                Superwall.shared.register(placement: "StartWorkout") {
+                Superwall.shared.register(placement: "MainPaywall") {
                     self.currentScreen = .home
                 }
             }
@@ -60,6 +92,35 @@ final class AppCoordinator: ObservableObject {
             return true
         } else {
             return false
+        }
+    }
+    
+     func checkSubscriptionStatusAndUpdateUI() {
+        Task {
+            if await checkSubscriptionStatus() {
+                self.currentScreen = .home
+            } else {
+                Superwall.shared.register(placement: "MainPaywall") {
+                    self.currentScreen = .home
+                }
+            }
+        }
+    }
+    
+    func restorePurchases() {
+        Task {
+            // Attempt to restore purchases
+            await Superwall.shared.restorePurchases()
+            
+            // After restore, re-check subscription status
+            if await checkSubscriptionStatus() {
+                self.currentScreen = .home
+            } else {
+                // Still no subscription, show paywall
+                Superwall.shared.register(placement: "MainPaywall") {
+                    self.currentScreen = .home
+                }
+            }
         }
     }
 }

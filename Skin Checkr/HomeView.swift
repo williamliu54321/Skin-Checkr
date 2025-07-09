@@ -58,7 +58,7 @@ struct HomeView: View {
                     .foregroundColor(.white)
                 
                 Button("Start Workout") {
-                    viewModel.onStartWorkout()
+                    viewModel.onStartMainPaywall()
                 }
 
                 
@@ -162,8 +162,7 @@ struct SkinScannerView_Previews: PreviewProvider {
     static var previews: some View {
         HomeView(
             viewModel: HomeViewModel(
-                authRepository: MockAuthRepository(),
-                onStartWorkout: {
+                placePaywall: {
                     // No-op for preview
                 }
             )

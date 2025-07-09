@@ -74,6 +74,9 @@
             ReferencedContainer = "container:Skin Checkr.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
+      <StoreKitConfigurationFileReference
+         identifier = "../../../../Library/Developer/Xcode/DerivedData/Skin_Checkr-fjjdiygzoziwkfdgeajecfmxlyrr/SourcePackages/checkouts/Superwall-iOS/Examples/Basic/Basic/Superwall_Basic-Products.storekit">
+      </StoreKitConfigurationFileReference>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"

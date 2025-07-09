@@ -11,11 +11,11 @@ import SwiftUI
 
 struct RootView: View {
     @ObservedObject var coordinator: AppCoordinator
-
+    
     var body: some View {
         switch coordinator.currentScreen {
-        case .login:
-            coordinator.makeLoginView()
+        case .onboarding:
+            coordinator.makeOnboardingView()
         case .home:
             coordinator.makeHomeView()
         }
