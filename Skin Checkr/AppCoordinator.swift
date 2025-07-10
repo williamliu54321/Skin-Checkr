@@ -20,6 +20,7 @@ final class AppCoordinator: ObservableObject {
     }
     
     func checkInitialFlow() {
+        UserDefaults.standard.set(false, forKey: "hasCompletedOnboarding") // This is mainly for testing purposes
         let hasCompletedOnboarding = UserDefaults.standard.bool(forKey: "hasCompletedOnboarding")
         
         print("checkInitialFlow hasCompletedOnboarding: \(hasCompletedOnboarding)")

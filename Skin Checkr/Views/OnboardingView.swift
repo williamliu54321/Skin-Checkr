@@ -10,6 +10,7 @@ import SwiftUI
 
 struct OnboardingView: View {
     @ObservedObject var coordinator: OnboardingCoordinator
+    @State private var tabSelection: Int = 0
     
     var body: some View {
         VStack {
@@ -23,21 +24,29 @@ struct OnboardingView: View {
             }
             .padding(.top, 20)
             
-            // Main content using switch
-            switch coordinator.currentStep {
-            case 0:
+            // Main content using TabView for gesture navigation
+            TabView(selection: $tabSelection) {
                 welcomeView
-            case 1:
+                    .tag(0)
+                
                 featuresView
-            case 2:
+                    .tag(1)
+                
                 privacyView
-            case 3:
+                    .tag(2)
+                
                 subscriptionView
-            default:
-                welcomeView // Fallback
+                    .tag(3)
+            }
+            .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+            .animation(.easeInOut, value: tabSelection)
+            .onChange(of: tabSelection) { newValue in
+                coordinator.currentStep = newValue
+            }
+            .onChange(of: coordinator.currentStep) { newValue in
+                tabSelection = newValue
             }
         }
-        .animation(.easeInOut, value: coordinator.currentStep)
     }
     
     // MARK: - Step Views

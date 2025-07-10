@@ -57,10 +57,9 @@ struct HomeView: View {
                     .font(.system(size: 50, weight: .bold))
                     .foregroundColor(.white)
                 
-                Button("Start Workout") {
+                Button("Start Paywall") {
                     viewModel.onStartMainPaywall()
                 }
-
                 
                 Text("Advanced AI analysis of your skin condition")
                     .font(.system(size: 16, weight: .medium))
