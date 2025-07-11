@@ -48,10 +48,15 @@ final class AppCoordinator: ObservableObject {
     }
     
     func onboardingCompleted() {
-        // Clean up
-        self.onboardingCoordinator = nil
-        
-        self.currentScreen = .home
+        // THIS IS THE MISSING PIECE!
+        // Wrap the state change that causes the UI to update in an animation block.
+        withAnimation(.easeInOut(duration: 0.4)) {
+            // Clean up
+            self.onboardingCoordinator = nil
+            
+            // This state change will now be animated
+            self.currentScreen = .home
+        }
     }
 
     func makeHomeView() -> some View {

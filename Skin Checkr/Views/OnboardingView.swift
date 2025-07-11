@@ -219,7 +219,7 @@ struct OnboardingView: View {
             
             Spacer()
             
-            Button(action: { coordinator.completeOnboarding() }) {
+            Button(action: { coordinator.startMainPaywall() }) {
                 Text("Start Free Trial")
                     .font(.headline)
                     .foregroundColor(.white)
@@ -230,6 +230,19 @@ struct OnboardingView: View {
             }
             .padding(.horizontal, 20)
             .padding(.bottom, 30)
+            
+            Button(action: { coordinator.goToHomeView() }) {
+                Text("Maybe Later")
+                    .font(.headline)
+                    .foregroundColor(.white)
+                    .frame(maxWidth: .infinity)
+                    .padding()
+                    .background(Color.blue)
+                    .cornerRadius(10)
+            }
+            .padding(.horizontal, 20)
+            .padding(.bottom, 30)
+
         }
     }
 }

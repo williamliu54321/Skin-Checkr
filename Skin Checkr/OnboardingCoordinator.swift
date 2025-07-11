@@ -54,4 +54,14 @@ class OnboardingCoordinator: ObservableObject {
     deinit {
         print("OnboardingCoordinator deallocated")
     }
+    
+    @MainActor
+    func startMainPaywall() {
+        parentCoordinator?.startMainPaywall()
+    }
+    
+    @MainActor
+    func goToHomeView() {
+        parentCoordinator?.currentScreen = .home
+    }
 }
