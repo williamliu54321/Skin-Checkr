@@ -80,7 +80,9 @@ struct HomeView: View {
                     }
                     Spacer()
                     
-                    Button(action: {}) {
+                    Button(action: {
+                        viewmodel.
+                    }) {
                         HStack(spacing: 12) {
                             Image(systemName: "plus")
                                 .font(.system(size: 18, weight: .semibold))
