@@ -21,6 +21,9 @@ struct RootView: View {
         case .home:
             coordinator.makeHomeView()
                 .transition(.move(edge: .trailing))
+            
+        case .getImageView:
+            coordinator.makeGetImageView()
 
         }
     }

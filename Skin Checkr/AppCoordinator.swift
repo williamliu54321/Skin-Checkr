@@ -7,6 +7,7 @@ final class AppCoordinator: ObservableObject {
     enum Screen {
         case onboarding
         case home
+        case getImageView
     }
 
     @Published var currentScreen: Screen = .home
@@ -60,13 +61,22 @@ final class AppCoordinator: ObservableObject {
     }
 
     func makeHomeView() -> some View {
+        // 2. UPDATE THE VIEWMODEL INITIALIZER
         let viewModel = HomeViewModel(
             placePaywall: { [weak self] in
                 self?.startMainPaywall()
+            },
+            // Pass the new closure that changes the screen state
+            showGetImageView: { [weak self] in
+                // Using withAnimation will make the transition smoother
+                withAnimation {
+                    self?.currentScreen = .getImageView
+                }
             }
         )
         return HomeView(viewModel: viewModel)
     }
+
     
     func makeOnboardingView() -> some View {
         if let coordinator = onboardingCoordinator {
@@ -74,6 +84,10 @@ final class AppCoordinator: ObservableObject {
         } else {
             return AnyView(ProgressView("Loading..."))
         }
+    }
+    
+    func makeGetImageView() -> some View {
+        return GetImageView()
     }
 
         

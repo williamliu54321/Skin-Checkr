@@ -81,7 +81,7 @@ struct HomeView: View {
                     Spacer()
                     
                     Button(action: {
-                        viewmodel.
+                        viewModel.onShowGetImageView()
                     }) {
                         HStack(spacing: 12) {
                             Image(systemName: "plus")
@@ -173,14 +173,11 @@ struct TabItemGlass: View {
     }
 }
 
-struct SkinScannerView_Previews: PreviewProvider {
+// In HomeView.swift
+
+struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView(
-            viewModel: HomeViewModel(
-                placePaywall: {
-                    // No-op for preview
-                }
-            )
-        )
+        // Just use the static mock property!
+        HomeView(viewModel: .mock)
     }
 }
