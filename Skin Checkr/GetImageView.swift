@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct GetImageView: View {
+    
+    @ObservedObject var viewModel: GetImageViewModel
+    
     @State private var savedPhotos: Int = 2
     
     var body: some View {
@@ -41,7 +44,7 @@ struct GetImageView: View {
                 // Header
                 HStack {
                     Button(action: {
-                        // Back action
+                        viewModel.onBack()
                     }) {
                         HStack(spacing: 5) {
                             Image(systemName: "chevron.left")
@@ -54,15 +57,6 @@ struct GetImageView: View {
                     
                     Spacer()
                     
-                    Button(action: {
-                        // Add photo action
-                    }) {
-                        HStack(spacing: 5) {
-                            Text("Add a Photo")
-                                .font(.system(size: 16, weight: .semibold))
-                        }
-                        .foregroundColor(Color("skyBlue"))
-                    }
                 }
                 .padding(.horizontal, 20)
                 
@@ -127,41 +121,12 @@ struct GetImageView: View {
                 .padding(.horizontal, 20)
                 
                 Spacer()
-                
-                // Divider
-                Rectangle()
-                    .fill(Color("lightBlue").opacity(0.3))
-                    .frame(height: 1)
-                    .padding(.horizontal, 40)
-                
-                // Saved photos indicator
-                HStack {
-                    Text("You have \(savedPhotos) photos waiting in your saved photos.")
-                        .font(.system(size: 16, weight: .medium))
-                        .foregroundColor(.white)
-                        .multilineTextAlignment(.center)
-                }
-                .padding(.vertical, 10)
-                
-                // Analyze saved photos button
-                Button(action: {
-                    // Analyze saved photos action
-                }) {
-                    Text("Analyze a Saved Photo")
-                        .font(.system(size: 18, weight: .semibold))
-                        .foregroundColor(.white)
-                        .frame(height: 50)
-                        .frame(width: 260)
-                        .background(Color("skyBlue"))
-                        .cornerRadius(30)
-                        .shadow(color: Color("deeperBlue").opacity(0.3), radius: 10, x: 0, y: 5)
-                }
-                .padding(.bottom, 20)
+                                
             }
         }
     }
 }
 
 #Preview {
-    GetImageView()
+    GetImageView(viewModel: GetImageViewModel(onBack: {}))
 }

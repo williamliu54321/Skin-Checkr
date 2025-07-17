@@ -85,11 +85,21 @@ final class AppCoordinator: ObservableObject {
             return AnyView(ProgressView("Loading..."))
         }
     }
-    
-    func makeGetImageView() -> some View {
-        return GetImageView()
-    }
 
+
+    func makeGetImageView() -> some View {
+        // 1. Create the new ViewModel
+        let viewModel = GetImageViewModel(
+            onBack: { [weak self] in
+                // 2. The action is to simply change the screen state back to home
+                withAnimation {
+                    self?.currentScreen = .home
+                }
+            }
+        )
+        // 3. Pass the ViewModel to the View
+        return GetImageView(viewModel: viewModel)
+    }
         
     func startMainPaywall() {
         Task {

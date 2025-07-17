@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		EF1679492E1C343E00DBE05F /* SuperwallKit in Frameworks */ = {isa = PBXBuildFile; productRef = EF1679482E1C343E00DBE05F /* SuperwallKit */; };
 		EF36035F2E277DC40078AF09 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF36035E2E277DC40078AF09 /* HomeViewModel.swift */; };
+		EF4FF0702E28782600C0EDB6 /* GetImageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF4FF06F2E28782600C0EDB6 /* GetImageViewModel.swift */; };
 		EF78E6722E19ACA9006AFF44 /* ResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF78E6712E19ACA9006AFF44 /* ResultsView.swift */; };
 		EF78E6742E19ADFE006AFF44 /* ResultsView 2.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF78E6732E19ADFE006AFF44 /* ResultsView 2.swift */; };
 		EF78E6762E19B70E006AFF44 /* GetImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF78E6752E19B70E006AFF44 /* GetImageView.swift */; };
@@ -49,6 +50,7 @@
 
 /* Begin PBXFileReference section */
 		EF36035E2E277DC40078AF09 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		EF4FF06F2E28782600C0EDB6 /* GetImageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetImageViewModel.swift; sourceTree = "<group>"; };
 		EF78E6712E19ACA9006AFF44 /* ResultsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsView.swift; sourceTree = "<group>"; };
 		EF78E6732E19ADFE006AFF44 /* ResultsView 2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ResultsView 2.swift"; sourceTree = "<group>"; };
 		EF78E6752E19B70E006AFF44 /* GetImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetImageView.swift; sourceTree = "<group>"; };
@@ -148,12 +150,13 @@
 				EFEB61742E17E914001485C1 /* Skin_Checkr.entitlements */,
 				EFAC068E2E1E923D0072EB4A /* RootView.swift */,
 				EF36035E2E277DC40078AF09 /* HomeViewModel.swift */,
+				EFEB61732E17E914001485C1 /* HomeView.swift */,
+				EF4FF06F2E28782600C0EDB6 /* GetImageViewModel.swift */,
+				EF78E6752E19B70E006AFF44 /* GetImageView.swift */,
 				EFAC06922E1E929E0072EB4A /* LoginView.swift */,
 				EF78E67D2E19BCAA006AFF44 /* ScanHistoryView.swift */,
-				EFEB61732E17E914001485C1 /* HomeView.swift */,
 				EF78E6732E19ADFE006AFF44 /* ResultsView 2.swift */,
 				EF78E6712E19ACA9006AFF44 /* ResultsView.swift */,
-				EF78E6752E19B70E006AFF44 /* GetImageView.swift */,
 				EF78E6792E19B7BB006AFF44 /* CameraInterfaceView.swift */,
 				EF78E6772E19B73E006AFF44 /* SavedPhotosLibraryView.swift */,
 				EF78E67B2E19B82F006AFF44 /* PhotosConfirmationView.swift */,
@@ -326,6 +329,7 @@
 				EFAC06A42E1EDC780072EB4A /* OnboardingCoordinator.swift in Sources */,
 				EFEB61772E17E914001485C1 /* HomeView.swift in Sources */,
 				EFAC068F2E1E923D0072EB4A /* RootView.swift in Sources */,
+				EF4FF0702E28782600C0EDB6 /* GetImageViewModel.swift in Sources */,
 				EF78E6742E19ADFE006AFF44 /* ResultsView 2.swift in Sources */,
 				EF78E67A2E19B7BB006AFF44 /* CameraInterfaceView.swift in Sources */,
 				EF78E6782E19B73E006AFF44 /* SavedPhotosLibraryView.swift in Sources */,
