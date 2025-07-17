@@ -11,13 +11,17 @@ import Foundation
 
 @MainActor
 final class GetImageViewModel: ObservableObject {
-    // This closure will be provided by the AppCoordinator
     let onBack: () -> Void
+    let onTakePhoto: () -> Void      // <-- Add this
+    let onUploadPhoto: () -> Void // <-- Add this
 
-    init(onBack: @escaping () -> Void) {
+    init(
+        onBack: @escaping () -> Void,
+        onTakePhoto: @escaping () -> Void,
+        onUploadPhoto: @escaping () -> Void
+    ) {
         self.onBack = onBack
+        self.onTakePhoto = onTakePhoto
+        self.onUploadPhoto = onUploadPhoto
     }
-
-    // You can add other functions here later, like for taking a photo
-    // or picking from the library.
 }

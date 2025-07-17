@@ -20,7 +20,6 @@
 		EF78E6912E1A6A66006AFF44 /* AppBackgroundModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF78E6902E1A6A66006AFF44 /* AppBackgroundModifier.swift */; };
 		EFAC068D2E1DEC8C0072EB4A /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFAC068C2E1DEC850072EB4A /* AppCoordinator.swift */; };
 		EFAC068F2E1E923D0072EB4A /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFAC068E2E1E923D0072EB4A /* RootView.swift */; };
-		EFAC06932E1E92A10072EB4A /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFAC06922E1E929E0072EB4A /* LoginView.swift */; };
 		EFAC06982E1E95240072EB4A /* SkinCheckrApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFAC06972E1E951E0072EB4A /* SkinCheckrApp.swift */; };
 		EFAC06A42E1EDC780072EB4A /* OnboardingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFAC06A32E1EDC720072EB4A /* OnboardingCoordinator.swift */; };
 		EFAC06AA2E1EDCD90072EB4A /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFAC06A92E1EDCD90072EB4A /* OnboardingView.swift */; };
@@ -61,7 +60,6 @@
 		EF78E6902E1A6A66006AFF44 /* AppBackgroundModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppBackgroundModifier.swift; sourceTree = "<group>"; };
 		EFAC068C2E1DEC850072EB4A /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		EFAC068E2E1E923D0072EB4A /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
-		EFAC06922E1E929E0072EB4A /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		EFAC06972E1E951E0072EB4A /* SkinCheckrApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkinCheckrApp.swift; sourceTree = "<group>"; };
 		EFAC06A32E1EDC720072EB4A /* OnboardingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCoordinator.swift; sourceTree = "<group>"; };
 		EFAC06A92E1EDCD90072EB4A /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
@@ -113,6 +111,7 @@
 		EFAC06A62E1EDCA90072EB4A /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				EFAC06A32E1EDC720072EB4A /* OnboardingCoordinator.swift */,
 				EFAC06A92E1EDCD90072EB4A /* OnboardingView.swift */,
 			);
 			path = Views;
@@ -142,10 +141,9 @@
 			isa = PBXGroup;
 			children = (
 				EFAC06A62E1EDCA90072EB4A /* Views */,
+				EF78E68F2E1A6A58006AFF44 /* Components */,
 				EFAC06972E1E951E0072EB4A /* SkinCheckrApp.swift */,
 				EFAC068C2E1DEC850072EB4A /* AppCoordinator.swift */,
-				EFAC06A32E1EDC720072EB4A /* OnboardingCoordinator.swift */,
-				EF78E68F2E1A6A58006AFF44 /* Components */,
 				EFEB61722E17E914001485C1 /* Assets.xcassets */,
 				EFEB61742E17E914001485C1 /* Skin_Checkr.entitlements */,
 				EFAC068E2E1E923D0072EB4A /* RootView.swift */,
@@ -153,7 +151,6 @@
 				EFEB61732E17E914001485C1 /* HomeView.swift */,
 				EF4FF06F2E28782600C0EDB6 /* GetImageViewModel.swift */,
 				EF78E6752E19B70E006AFF44 /* GetImageView.swift */,
-				EFAC06922E1E929E0072EB4A /* LoginView.swift */,
 				EF78E67D2E19BCAA006AFF44 /* ScanHistoryView.swift */,
 				EF78E6732E19ADFE006AFF44 /* ResultsView 2.swift */,
 				EF78E6712E19ACA9006AFF44 /* ResultsView.swift */,
@@ -337,7 +334,6 @@
 				EF78E6722E19ACA9006AFF44 /* ResultsView.swift in Sources */,
 				EFAC06AA2E1EDCD90072EB4A /* OnboardingView.swift in Sources */,
 				EF78E67E2E19BCAA006AFF44 /* ScanHistoryView.swift in Sources */,
-				EFAC06932E1E92A10072EB4A /* LoginView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

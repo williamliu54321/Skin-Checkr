@@ -1,31 +1,16 @@
-//
-//  GetImageView.swift
-//  Skin Checkr
-//
-//  Created by William Liu on 2025-07-05.
-//
-
 import SwiftUI
 
 struct GetImageView: View {
     
     @ObservedObject var viewModel: GetImageViewModel
     
+    // This state variable is not used in the button logic, but keeping it
+    // as it was in your original code.
     @State private var savedPhotos: Int = 2
     
     var body: some View {
         ZStack {
-            // Background gradient
-            LinearGradient(
-                gradient: Gradient(colors: [
-                    Color("darkBlue"),
-                    Color("deeperBlue")
-                ]),
-                startPoint: .topLeading,
-                endPoint: .bottomTrailing
-            )
-            .edgesIgnoringSafeArea(.all)
-            
+        
             // Background decorative elements
             Circle()
                 .fill(Color("skyBlue").opacity(0.3))
@@ -74,50 +59,62 @@ struct GetImageView: View {
                 .font(.system(size: 16, weight: .medium))
                 .padding(.vertical, 20)
                 
-                // Camera Option
-                VStack(spacing: 8) {
-                    Image(systemName: "camera.fill")
-                        .font(.system(size: 24))
-                        .foregroundColor(.white)
-                        .padding(.top, 10)
-                    
-                    Text("Take a Photo")
-                        .font(.system(size: 18, weight: .medium))
-                        .foregroundColor(.white)
-                        .padding(.bottom, 10)
+                // MARK: - Camera Option Button
+                // Wrap the entire styled VStack in a Button
+                Button(action: {
+                    viewModel.onTakePhoto()
+                }) {
+                    VStack(spacing: 8) {
+                        Image(systemName: "camera.fill")
+                            .font(.system(size: 24))
+                            .foregroundColor(.white)
+                            .padding(.top, 10)
+                        
+                        Text("Take a Photo")
+                            .font(.system(size: 18, weight: .medium))
+                            .foregroundColor(.white)
+                            .padding(.bottom, 10)
+                    }
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .padding(.vertical, 15)
+                    .background(Color("skyBlue").opacity(0.2))
+                    .cornerRadius(20)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 20)
+                            .stroke(Color("lightBlue"), lineWidth: 1)
+                    )
+                    .shadow(color: Color.black.opacity(0.15), radius: 10, x: 0, y: 5)
                 }
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .padding(.vertical, 15)
-                .background(Color("skyBlue").opacity(0.2))
-                .cornerRadius(20)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 20)
-                        .stroke(Color("lightBlue"), lineWidth: 1)
-                )
-                .shadow(color: Color.black.opacity(0.15), radius: 10, x: 0, y: 5)
+                .buttonStyle(.plain) // This preserves your custom styling
                 .padding(.horizontal, 20)
                 
-                // Photos Option
-                VStack(spacing: 8) {
-                    Image(systemName: "photo.on.rectangle")
-                        .font(.system(size: 24))
-                        .foregroundColor(.white)
-                        .padding(.top, 10)
-                    
-                    Text("Upload from Library")
-                        .font(.system(size: 18, weight: .medium))
-                        .foregroundColor(.white)
-                        .padding(.bottom, 10)
+                // MARK: - Photos Option Button
+                // Do the same for the upload option
+                Button(action: {
+                    viewModel.onUploadPhoto()
+                }) {
+                    VStack(spacing: 8) {
+                        Image(systemName: "photo.on.rectangle")
+                            .font(.system(size: 24))
+                            .foregroundColor(.white)
+                            .padding(.top, 10)
+                        
+                        Text("Upload from Library")
+                            .font(.system(size: 18, weight: .medium))
+                            .foregroundColor(.white)
+                            .padding(.bottom, 10)
+                    }
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .padding(.vertical, 15)
+                    .background(Color("skyBlue").opacity(0.2))
+                    .cornerRadius(20)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 20)
+                            .stroke(Color("lightBlue"), lineWidth: 1)
+                    )
+                    .shadow(color: Color.black.opacity(0.15), radius: 10, x: 0, y: 5)
                 }
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .padding(.vertical, 15)
-                .background(Color("skyBlue").opacity(0.2))
-                .cornerRadius(20)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 20)
-                        .stroke(Color("lightBlue"), lineWidth: 1)
-                )
-                .shadow(color: Color.black.opacity(0.15), radius: 10, x: 0, y: 5)
+                .buttonStyle(.plain) // This preserves your custom styling
                 .padding(.horizontal, 20)
                 
                 Spacer()
@@ -128,5 +125,5 @@ struct GetImageView: View {
 }
 
 #Preview {
-    GetImageView(viewModel: GetImageViewModel(onBack: {}))
+    GetImageView(viewModel: GetImageViewModel(onBack: {}, onTakePhoto: {}, onUploadPhoto: {}))
 }

@@ -8,6 +8,8 @@ final class AppCoordinator: ObservableObject {
         case onboarding
         case home
         case getImageView
+        case cameraInterfaceView
+        case savedPhotosLibraryView
     }
 
     @Published var currentScreen: Screen = .home
@@ -85,20 +87,59 @@ final class AppCoordinator: ObservableObject {
             return AnyView(ProgressView("Loading..."))
         }
     }
-
-
+    
     func makeGetImageView() -> some View {
-        // 1. Create the new ViewModel
+        // This initializer is now broken, let's fix it by providing the new closures.
         let viewModel = GetImageViewModel(
             onBack: { [weak self] in
-                // 2. The action is to simply change the screen state back to home
                 withAnimation {
                     self?.currentScreen = .home
                 }
+            },
+            onTakePhoto: { [weak self] in
+                // When onTakePhoto is called, change the screen to cameraView
+                withAnimation {
+                    self?.currentScreen = .cameraInterfaceView
+                }
+            },
+            onUploadPhoto: { [weak self] in
+                // When onUploadPhoto is called, change the screen to photoPickerView
+                withAnimation {
+                    self?.currentScreen = .savedPhotosLibraryView
+                }
             }
         )
-        // 3. Pass the ViewModel to the View
         return GetImageView(viewModel: viewModel)
+    }
+
+    // NOW, ADD THE MAKER FUNCTIONS FOR THE NEW VIEWS
+    // For now, these can be simple placeholders.
+
+    func makeCameraInterfaceView() -> some View {
+        // In the future, this will return your actual camera UI.
+        // It will also need an "onBack" or "onDismiss" closure.
+        // For now, a placeholder is fine.
+        VStack {
+            Text("Camera View Placeholder")
+            // This button demonstrates how the camera view would navigate back.
+            Button("Go Back") {
+                withAnimation {
+                    self.currentScreen = .getImageView
+                }
+            }
+        }
+    }
+
+    func makeSavedPhotosLibraryView() -> some View {
+        // This will eventually hold your PHPickerViewController or similar.
+        VStack {
+            Text("Photo Picker Placeholder")
+            Button("Go Back") {
+                withAnimation {
+                    self.currentScreen = .getImageView
+                }
+            }
+        }
     }
         
     func startMainPaywall() {
