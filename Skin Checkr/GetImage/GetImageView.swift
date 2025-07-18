@@ -11,20 +11,6 @@ struct GetImageView: View {
     var body: some View {
         ZStack {
         
-            // Background decorative elements
-            Circle()
-                .fill(Color("skyBlue").opacity(0.3))
-                .frame(width: 250, height: 250)
-                .blur(radius: 50)
-                .offset(x: -100, y: -150)
-            
-            Circle()
-                .fill(Color("lightBlue").opacity(0.4))
-                .frame(width: 300, height: 300)
-                .blur(radius: 60)
-                .offset(x: 150, y: 100)
-            
-            // Main content
             VStack(spacing: 15) {
                 // Header
                 HStack {
@@ -88,8 +74,6 @@ struct GetImageView: View {
                 .buttonStyle(.plain) // This preserves your custom styling
                 .padding(.horizontal, 20)
                 
-                // MARK: - Photos Option Button
-                // Do the same for the upload option
                 Button(action: {
                     viewModel.onUploadPhoto()
                 }) {

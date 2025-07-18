@@ -116,18 +116,14 @@ final class AppCoordinator: ObservableObject {
     // For now, these can be simple placeholders.
 
     func makeCameraInterfaceView() -> some View {
-        // In the future, this will return your actual camera UI.
-        // It will also need an "onBack" or "onDismiss" closure.
-        // For now, a placeholder is fine.
-        VStack {
-            Text("Camera View Placeholder")
-            // This button demonstrates how the camera view would navigate back.
-            Button("Go Back") {
-                withAnimation {
-                    self.currentScreen = .getImageView
-                }
+        
+        let viewModel = CameraInterfaceViewModel(onBack: { [weak self] in
+            withAnimation {
+                self?.currentScreen = .getImageView
             }
         }
+        )
+        return CameraInterfaceView(viewModel: viewModel)
     }
 
     func makeSavedPhotosLibraryView() -> some View {

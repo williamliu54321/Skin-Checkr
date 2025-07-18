@@ -18,6 +18,7 @@
 		EF78E67C2E19B82F006AFF44 /* PhotosConfirmationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF78E67B2E19B82F006AFF44 /* PhotosConfirmationView.swift */; };
 		EF78E67E2E19BCAA006AFF44 /* ScanHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF78E67D2E19BCAA006AFF44 /* ScanHistoryView.swift */; };
 		EF78E6912E1A6A66006AFF44 /* AppBackgroundModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF78E6902E1A6A66006AFF44 /* AppBackgroundModifier.swift */; };
+		EF9B8A5D2E29C508000DE136 /* CameraInterfaceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9B8A5C2E29C508000DE136 /* CameraInterfaceViewModel.swift */; };
 		EFAC068D2E1DEC8C0072EB4A /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFAC068C2E1DEC850072EB4A /* AppCoordinator.swift */; };
 		EFAC068F2E1E923D0072EB4A /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFAC068E2E1E923D0072EB4A /* RootView.swift */; };
 		EFAC06982E1E95240072EB4A /* SkinCheckrApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFAC06972E1E951E0072EB4A /* SkinCheckrApp.swift */; };
@@ -58,6 +59,7 @@
 		EF78E67B2E19B82F006AFF44 /* PhotosConfirmationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosConfirmationView.swift; sourceTree = "<group>"; };
 		EF78E67D2E19BCAA006AFF44 /* ScanHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanHistoryView.swift; sourceTree = "<group>"; };
 		EF78E6902E1A6A66006AFF44 /* AppBackgroundModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppBackgroundModifier.swift; sourceTree = "<group>"; };
+		EF9B8A5C2E29C508000DE136 /* CameraInterfaceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraInterfaceViewModel.swift; sourceTree = "<group>"; };
 		EFAC068C2E1DEC850072EB4A /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		EFAC068E2E1E923D0072EB4A /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		EFAC06972E1E951E0072EB4A /* SkinCheckrApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkinCheckrApp.swift; sourceTree = "<group>"; };
@@ -108,13 +110,40 @@
 			path = Components;
 			sourceTree = "<group>";
 		};
-		EFAC06A62E1EDCA90072EB4A /* Views */ = {
+		EF9B8A592E29C247000DE136 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				EFEB61732E17E914001485C1 /* HomeView.swift */,
+				EF36035E2E277DC40078AF09 /* HomeViewModel.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		EF9B8A5A2E29C260000DE136 /* GetImage */ = {
+			isa = PBXGroup;
+			children = (
+				EF78E6752E19B70E006AFF44 /* GetImageView.swift */,
+				EF4FF06F2E28782600C0EDB6 /* GetImageViewModel.swift */,
+			);
+			path = GetImage;
+			sourceTree = "<group>";
+		};
+		EF9B8A5B2E29C27B000DE136 /* CameraInterfaceView */ = {
+			isa = PBXGroup;
+			children = (
+				EF9B8A5C2E29C508000DE136 /* CameraInterfaceViewModel.swift */,
+				EF78E6792E19B7BB006AFF44 /* CameraInterfaceView.swift */,
+			);
+			path = CameraInterfaceView;
+			sourceTree = "<group>";
+		};
+		EFAC06A62E1EDCA90072EB4A /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
 				EFAC06A32E1EDC720072EB4A /* OnboardingCoordinator.swift */,
 				EFAC06A92E1EDCD90072EB4A /* OnboardingView.swift */,
 			);
-			path = Views;
+			path = Onboarding;
 			sourceTree = "<group>";
 		};
 		EFEB612E2E17E71D001485C1 = {
@@ -140,21 +169,19 @@
 		EFEB61762E17E914001485C1 /* Skin Checkr */ = {
 			isa = PBXGroup;
 			children = (
-				EFAC06A62E1EDCA90072EB4A /* Views */,
-				EF78E68F2E1A6A58006AFF44 /* Components */,
 				EFAC06972E1E951E0072EB4A /* SkinCheckrApp.swift */,
-				EFAC068C2E1DEC850072EB4A /* AppCoordinator.swift */,
-				EFEB61722E17E914001485C1 /* Assets.xcassets */,
 				EFEB61742E17E914001485C1 /* Skin_Checkr.entitlements */,
+				EFEB61722E17E914001485C1 /* Assets.xcassets */,
+				EFAC068C2E1DEC850072EB4A /* AppCoordinator.swift */,
 				EFAC068E2E1E923D0072EB4A /* RootView.swift */,
-				EF36035E2E277DC40078AF09 /* HomeViewModel.swift */,
-				EFEB61732E17E914001485C1 /* HomeView.swift */,
-				EF4FF06F2E28782600C0EDB6 /* GetImageViewModel.swift */,
-				EF78E6752E19B70E006AFF44 /* GetImageView.swift */,
+				EF78E68F2E1A6A58006AFF44 /* Components */,
+				EF9B8A592E29C247000DE136 /* Home */,
+				EFAC06A62E1EDCA90072EB4A /* Onboarding */,
+				EF9B8A5A2E29C260000DE136 /* GetImage */,
 				EF78E67D2E19BCAA006AFF44 /* ScanHistoryView.swift */,
 				EF78E6732E19ADFE006AFF44 /* ResultsView 2.swift */,
 				EF78E6712E19ACA9006AFF44 /* ResultsView.swift */,
-				EF78E6792E19B7BB006AFF44 /* CameraInterfaceView.swift */,
+				EF9B8A5B2E29C27B000DE136 /* CameraInterfaceView */,
 				EF78E6772E19B73E006AFF44 /* SavedPhotosLibraryView.swift */,
 				EF78E67B2E19B82F006AFF44 /* PhotosConfirmationView.swift */,
 			);
@@ -327,6 +354,7 @@
 				EFEB61772E17E914001485C1 /* HomeView.swift in Sources */,
 				EFAC068F2E1E923D0072EB4A /* RootView.swift in Sources */,
 				EF4FF0702E28782600C0EDB6 /* GetImageViewModel.swift in Sources */,
+				EF9B8A5D2E29C508000DE136 /* CameraInterfaceViewModel.swift in Sources */,
 				EF78E6742E19ADFE006AFF44 /* ResultsView 2.swift in Sources */,
 				EF78E67A2E19B7BB006AFF44 /* CameraInterfaceView.swift in Sources */,
 				EF78E6782E19B73E006AFF44 /* SavedPhotosLibraryView.swift in Sources */,

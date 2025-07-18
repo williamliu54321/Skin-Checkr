@@ -8,38 +8,16 @@
 import SwiftUI
 
 struct CameraInterfaceView: View {
+    
+    @ObservedObject var viewModel: CameraInterfaceViewModel
+    
     var body: some View {
         ZStack {
-            // Background - darker gradient for camera but keeping app style
-            LinearGradient(
-                gradient: Gradient(colors: [
-                    Color("darkBlue").opacity(0.9),
-                    Color("deeperBlue").opacity(0.9)
-                ]),
-                startPoint: .topLeading,
-                endPoint: .bottomTrailing
-            )
-            .edgesIgnoringSafeArea(.all)
-            
-            // Background decorative elements (subtle)
-            Circle()
-                .fill(Color("skyBlue").opacity(0.1))
-                .frame(width: 250, height: 250)
-                .blur(radius: 60)
-                .offset(x: -100, y: -150)
-            
-            Circle()
-                .fill(Color("lightBlue").opacity(0.1))
-                .frame(width: 300, height: 300)
-                .blur(radius: 70)
-                .offset(x: 150, y: 100)
-            
-            // Camera interface content
             VStack(spacing: 20) {
                 // Header
                 HStack {
                     Button(action: {
-                        // Close action
+                        viewModel.onBack()
                     }) {
                         HStack(spacing: 5) {
                             Image(systemName: "xmark")
@@ -171,5 +149,7 @@ struct CameraInterfaceView: View {
 }
 
 #Preview {
-    CameraInterfaceView()
+    CameraInterfaceView(viewModel: CameraInterfaceViewModel(onBack: {
+        
+    }))
 }

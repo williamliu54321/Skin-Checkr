@@ -19,7 +19,8 @@ final class GetImageViewModel: ObservableObject {
         onBack: @escaping () -> Void,
         onTakePhoto: @escaping () -> Void,
         onUploadPhoto: @escaping () -> Void
-    ) {
+    )
+    {
         self.onBack = onBack
         self.onTakePhoto = onTakePhoto
         self.onUploadPhoto = onUploadPhoto
