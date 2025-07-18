@@ -10,9 +10,12 @@ final class AppCoordinator: ObservableObject {
         case getImageView
         case cameraInterfaceView
         case savedPhotosLibraryView
+        case photosConfirmationView
     }
 
     @Published var currentScreen: Screen = .home
+    
+    @Published var capturedImage: UIImage?
 
     private var onboardingCoordinator: OnboardingCoordinator?
 
@@ -89,7 +92,6 @@ final class AppCoordinator: ObservableObject {
     }
     
     func makeGetImageView() -> some View {
-        // This initializer is now broken, let's fix it by providing the new closures.
         let viewModel = GetImageViewModel(
             onBack: { [weak self] in
                 withAnimation {
@@ -97,13 +99,11 @@ final class AppCoordinator: ObservableObject {
                 }
             },
             onTakePhoto: { [weak self] in
-                // When onTakePhoto is called, change the screen to cameraView
                 withAnimation {
                     self?.currentScreen = .cameraInterfaceView
                 }
             },
             onUploadPhoto: { [weak self] in
-                // When onUploadPhoto is called, change the screen to photoPickerView
                 withAnimation {
                     self?.currentScreen = .savedPhotosLibraryView
                 }
@@ -112,20 +112,32 @@ final class AppCoordinator: ObservableObject {
         return GetImageView(viewModel: viewModel)
     }
 
-    // NOW, ADD THE MAKER FUNCTIONS FOR THE NEW VIEWS
-    // For now, these can be simple placeholders.
 
     func makeCameraInterfaceView() -> some View {
         
-        let viewModel = CameraInterfaceViewModel(onBack: { [weak self] in
-            withAnimation {
-                self?.currentScreen = .getImageView
+        // This is now SAFE. We are creating the Container View and giving it
+        // the implementation for its closures. The Container View will then
+        // safely create the @StateObject for the ViewModel.
+        return CameraFlowContainerView(
+            
+            // Logic for the 'Back' button
+            onBack: { [weak self] in
+                withAnimation {
+                    self?.currentScreen = .getImageView
+                }
+            },
+            
+            // Logic for what happens after a photo is taken
+            onPhotoTaken: { [weak self] image in
+                self?.capturedImage = image
+                withAnimation {
+                    self?.currentScreen = .photosConfirmationView
+                }
             }
-        }
         )
-        return CameraInterfaceView(viewModel: viewModel)
     }
 
+    
     func makeSavedPhotosLibraryView() -> some View {
         // This will eventually hold your PHPickerViewController or similar.
         VStack {
@@ -136,6 +148,10 @@ final class AppCoordinator: ObservableObject {
                 }
             }
         }
+    }
+    
+    func makePhotosConfirmationView() -> some View {
+        return PhotosConfirmationView()
     }
         
     func startMainPaywall() {

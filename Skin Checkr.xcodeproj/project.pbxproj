@@ -19,6 +19,8 @@
 		EF78E67E2E19BCAA006AFF44 /* ScanHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF78E67D2E19BCAA006AFF44 /* ScanHistoryView.swift */; };
 		EF78E6912E1A6A66006AFF44 /* AppBackgroundModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF78E6902E1A6A66006AFF44 /* AppBackgroundModifier.swift */; };
 		EF9B8A5D2E29C508000DE136 /* CameraInterfaceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9B8A5C2E29C508000DE136 /* CameraInterfaceViewModel.swift */; };
+		EF9B8A612E29CF8B000DE136 /* CameraPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9B8A602E29CF8B000DE136 /* CameraPreview.swift */; };
+		EF9B8A632E29D91A000DE136 /* CameraFlowContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9B8A622E29D91A000DE136 /* CameraFlowContainerView.swift */; };
 		EFAC068D2E1DEC8C0072EB4A /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFAC068C2E1DEC850072EB4A /* AppCoordinator.swift */; };
 		EFAC068F2E1E923D0072EB4A /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFAC068E2E1E923D0072EB4A /* RootView.swift */; };
 		EFAC06982E1E95240072EB4A /* SkinCheckrApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFAC06972E1E951E0072EB4A /* SkinCheckrApp.swift */; };
@@ -60,6 +62,8 @@
 		EF78E67D2E19BCAA006AFF44 /* ScanHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanHistoryView.swift; sourceTree = "<group>"; };
 		EF78E6902E1A6A66006AFF44 /* AppBackgroundModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppBackgroundModifier.swift; sourceTree = "<group>"; };
 		EF9B8A5C2E29C508000DE136 /* CameraInterfaceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraInterfaceViewModel.swift; sourceTree = "<group>"; };
+		EF9B8A602E29CF8B000DE136 /* CameraPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPreview.swift; sourceTree = "<group>"; };
+		EF9B8A622E29D91A000DE136 /* CameraFlowContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraFlowContainerView.swift; sourceTree = "<group>"; };
 		EFAC068C2E1DEC850072EB4A /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		EFAC068E2E1E923D0072EB4A /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		EFAC06972E1E951E0072EB4A /* SkinCheckrApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkinCheckrApp.swift; sourceTree = "<group>"; };
@@ -133,6 +137,8 @@
 			children = (
 				EF9B8A5C2E29C508000DE136 /* CameraInterfaceViewModel.swift */,
 				EF78E6792E19B7BB006AFF44 /* CameraInterfaceView.swift */,
+				EF9B8A602E29CF8B000DE136 /* CameraPreview.swift */,
+				EF9B8A622E29D91A000DE136 /* CameraFlowContainerView.swift */,
 			);
 			path = CameraInterfaceView;
 			sourceTree = "<group>";
@@ -356,10 +362,12 @@
 				EF36035F2E277DC40078AF09 /* HomeViewModel.swift in Sources */,
 				EF78E67C2E19B82F006AFF44 /* PhotosConfirmationView.swift in Sources */,
 				EFAC068D2E1DEC8C0072EB4A /* AppCoordinator.swift in Sources */,
+				EF9B8A612E29CF8B000DE136 /* CameraPreview.swift in Sources */,
 				EF78E6762E19B70E006AFF44 /* GetImageView.swift in Sources */,
 				EFAC06982E1E95240072EB4A /* SkinCheckrApp.swift in Sources */,
 				EFAC06A42E1EDC780072EB4A /* OnboardingCoordinator.swift in Sources */,
 				EFEB61772E17E914001485C1 /* HomeView.swift in Sources */,
+				EF9B8A632E29D91A000DE136 /* CameraFlowContainerView.swift in Sources */,
 				EFAC068F2E1E923D0072EB4A /* RootView.swift in Sources */,
 				EF4FF0702E28782600C0EDB6 /* GetImageViewModel.swift in Sources */,
 				EF9B8A5D2E29C508000DE136 /* CameraInterfaceViewModel.swift in Sources */,
@@ -531,6 +539,7 @@
 				DEVELOPMENT_TEAM = 48DNC6L6NN;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "$(MARKETING_VERSION)";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -569,6 +578,7 @@
 				DEVELOPMENT_TEAM = 48DNC6L6NN;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "$(MARKETING_VERSION)";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;

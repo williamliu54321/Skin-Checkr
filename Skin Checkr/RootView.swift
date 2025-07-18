@@ -50,7 +50,7 @@ struct RootView: View {
                     // It doesn't slide, the other views slide on TOP of it.
                     .transition(.opacity.animation(.easeInOut))
                 
-            case .getImageView, .cameraInterfaceView, .savedPhotosLibraryView:
+            case .getImageView, .cameraInterfaceView, .savedPhotosLibraryView, .photosConfirmationView:
                 // GROUPING all hierarchical views together.
                 // This is the key to fixing the overlay issue.
                 // Every view in this flow uses the same "push" animation rule.
@@ -73,6 +73,9 @@ struct RootView: View {
                         .transition(pushTransition)
                 case .savedPhotosLibraryView:
                     coordinator.makeSavedPhotosLibraryView()
+                        .transition(pushTransition)
+                case .photosConfirmationView:
+                    coordinator.makePhotosConfirmationView()
                         .transition(pushTransition)
                 default:
                     EmptyView() // Should not happen, but required for switch
