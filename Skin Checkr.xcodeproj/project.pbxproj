@@ -137,6 +137,14 @@
 			path = CameraInterfaceView;
 			sourceTree = "<group>";
 		};
+		EF9B8A5F2E29C6B0000DE136 /* PhotosConfirmation */ = {
+			isa = PBXGroup;
+			children = (
+				EF78E67B2E19B82F006AFF44 /* PhotosConfirmationView.swift */,
+			);
+			path = PhotosConfirmation;
+			sourceTree = "<group>";
+		};
 		EFAC06A62E1EDCA90072EB4A /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
@@ -183,7 +191,7 @@
 				EF78E6712E19ACA9006AFF44 /* ResultsView.swift */,
 				EF9B8A5B2E29C27B000DE136 /* CameraInterfaceView */,
 				EF78E6772E19B73E006AFF44 /* SavedPhotosLibraryView.swift */,
-				EF78E67B2E19B82F006AFF44 /* PhotosConfirmationView.swift */,
+				EF9B8A5F2E29C6B0000DE136 /* PhotosConfirmation */,
 			);
 			path = "Skin Checkr";
 			sourceTree = "<group>";
