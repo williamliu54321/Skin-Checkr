@@ -71,9 +71,6 @@ struct RootView: View {
                 case .cameraInterfaceView:
                     coordinator.makeCameraInterfaceView()
                         .transition(pushTransition)
-                case .savedPhotosLibraryView:
-                    coordinator.makeSavedPhotosLibraryView()
-                        .transition(pushTransition)
                 case .photosConfirmationView:
                     coordinator.makePhotosConfirmationView()
                         .transition(pushTransition)

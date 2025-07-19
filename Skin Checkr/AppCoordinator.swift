@@ -126,56 +126,28 @@ final class AppCoordinator: ObservableObject {
     }
     
     func makeGetImageView() -> some View {
-        let viewModel = GetImageViewModel(
-            onBack: { [weak self] in
-                withAnimation {
-                    self?.currentScreen = .home
-                }
-            },
-            onTakePhoto: { [weak self] in
-                withAnimation {
-                    self?.currentScreen = .cameraInterfaceView
-                }
-            },
-            onUploadPhoto: { [weak self] in
-                withAnimation {
-                    self?.currentScreen = .savedPhotosLibraryView
-                }
-            }
-        )
-        return GetImageView(viewModel: viewModel)
-    }
-    
-    // In AppCoordinator.swift, replace the existing function with this:
-
-    func makeSavedPhotosLibraryView() -> some View {
-        
-        // Create the ViewModel and provide the logic for what its closures should do.
-        let viewModel = SavedPhotosLibraryViewModel(
-            
-            // The logic for the "Back" button.
-            onBack: { [weak self] in
-                withAnimation {
-                    self?.currentScreen = .getImageView
-                }
-            },
-            
-            // The logic for what happens after a photo is selected from the library.
-            onPhotoSelected: { [weak self] image in
-                // 1. Store the selected image.
-                self?.capturedImage = image
-                
-                // 2. Navigate to the confirmation screen.
-                withAnimation {
-                    self?.currentScreen = .photosConfirmationView
-                }
-            }
-        )
-        
-        // Create the view and pass it the ViewModel.
-        return SavedPhotosLibraryView(viewModel: viewModel)
-    }
-
+         let viewModel = GetImageViewModel(
+             onBack: { [weak self] in
+                 withAnimation {
+                     self?.currentScreen = .home
+                 }
+             },
+             onTakePhoto: { [weak self] in
+                 withAnimation {
+                     self?.currentScreen = .cameraInterfaceView
+                 }
+             },
+             // PROVIDE THE NEW CLOSURE: The logic for what to do after a photo is selected.
+             // This is the same logic as the camera path!
+             onPhotoSelected: { [weak self] image in
+                 self?.capturedImage = image
+                 withAnimation {
+                     self?.currentScreen = .photosConfirmationView
+                 }
+             }
+         )
+         return GetImageView(viewModel: viewModel)
+     }
         
     func startMainPaywall() {
         Task {

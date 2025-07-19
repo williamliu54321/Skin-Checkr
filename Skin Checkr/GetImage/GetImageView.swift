@@ -8,15 +8,16 @@ struct GetImageView: View {
     // as it was in your original code.
     @State private var savedPhotos: Int = 2
     
+    // --> ADDED: A new state variable to control when the photo picker sheet is shown.
+    @State private var isShowingPhotoPicker = false
+    
     var body: some View {
         ZStack {
         
             VStack(spacing: 15) {
-                // Header
+                // Header (No changes here)
                 HStack {
-                    Button(action: {
-                        viewModel.onBack()
-                    }) {
+                    Button(action: viewModel.onBack) {
                         HStack(spacing: 5) {
                             Image(systemName: "chevron.left")
                                 .font(.system(size: 16, weight: .semibold))
@@ -31,7 +32,7 @@ struct GetImageView: View {
                 }
                 .padding(.horizontal, 20)
                 
-                // Instructions text
+                // Instructions text (No changes here)
                 HStack {
                     Text("Choose a ")
                         .foregroundColor(.white)
@@ -45,11 +46,8 @@ struct GetImageView: View {
                 .font(.system(size: 16, weight: .medium))
                 .padding(.vertical, 20)
                 
-                // MARK: - Camera Option Button
-                // Wrap the entire styled VStack in a Button
-                Button(action: {
-                    viewModel.onTakePhoto()
-                }) {
+                // "Take a Photo" Button (No changes here)
+                Button(action: viewModel.onTakePhoto) {
                     VStack(spacing: 8) {
                         Image(systemName: "camera.fill")
                             .font(.system(size: 24))
@@ -71,12 +69,15 @@ struct GetImageView: View {
                     )
                     .shadow(color: Color.black.opacity(0.15), radius: 10, x: 0, y: 5)
                 }
-                .buttonStyle(.plain) // This preserves your custom styling
+                .buttonStyle(.plain)
                 .padding(.horizontal, 20)
                 
+                // "Upload from Library" Button
+                // --> EDITED: The action now just flips the switch to show the sheet.
                 Button(action: {
-                    viewModel.onUploadPhoto()
+                    isShowingPhotoPicker = true
                 }) {
+                    // The UI for this button is completely unchanged.
                     VStack(spacing: 8) {
                         Image(systemName: "photo.on.rectangle")
                             .font(.system(size: 24))
@@ -98,16 +99,37 @@ struct GetImageView: View {
                     )
                     .shadow(color: Color.black.opacity(0.15), radius: 10, x: 0, y: 5)
                 }
-                .buttonStyle(.plain) // This preserves your custom styling
+                .buttonStyle(.plain)
                 .padding(.horizontal, 20)
                 
                 Spacer()
                                 
             }
         }
+        // --> ADDED: The .sheet modifier presents the PhotoPicker when the state variable is true.
+        .sheet(isPresented: $isShowingPhotoPicker) {
+            // This is the content that will appear in the sheet.
+            PhotoPicker(
+                onCancel: {
+                    // When the user cancels, just dismiss the sheet.
+                    isShowingPhotoPicker = false
+                },
+                onPhotoSelected: { image in
+                    // When a photo is selected, dismiss the sheet AND
+                    // call the ViewModel's closure to pass the image up to the coordinator.
+                    isShowingPhotoPicker = false
+                    viewModel.onPhotoSelected(image)
+                }
+            )
+        }
     }
 }
 
 #Preview {
-    GetImageView(viewModel: GetImageViewModel(onBack: {}, onTakePhoto: {}, onUploadPhoto: {}))
+    // --> EDITED: The preview is updated to use the new ViewModel initializer.
+    GetImageView(viewModel: GetImageViewModel(
+        onBack: { print("Back Tapped") },
+        onTakePhoto: { print("Take Photo Tapped") },
+        onPhotoSelected: { image in print("Photo was selected from library: \(image)") }
+    ))
 }

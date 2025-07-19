@@ -5,24 +5,30 @@
 //  Created by William Liu on 2025-07-17.
 //
 
-// Create a new file: GetImageViewModel.swift
-
-import Foundation
+import SwiftUI // We need to import SwiftUI to use the UIImage type
 
 @MainActor
 final class GetImageViewModel: ObservableObject {
     let onBack: () -> Void
-    let onTakePhoto: () -> Void      // <-- Add this
-    let onUploadPhoto: () -> Void // <-- Add this
+    let onTakePhoto: () -> Void
+    
+    // REMOVED: The old onUploadPhoto is no longer needed because the view
+    // itself will trigger the sheet.
+    // let onUploadPhoto: () -> Void
+    
+    // ADDED: A new closure to handle the image AFTER it has been selected.
+    // This is the new communication channel back to the AppCoordinator.
+    let onPhotoSelected: (UIImage) -> Void
 
+    // UPDATE THE INITIALIZER to match the new properties.
     init(
         onBack: @escaping () -> Void,
         onTakePhoto: @escaping () -> Void,
-        onUploadPhoto: @escaping () -> Void
+        onPhotoSelected: @escaping (UIImage) -> Void // <-- New parameter
     )
     {
         self.onBack = onBack
         self.onTakePhoto = onTakePhoto
-        self.onUploadPhoto = onUploadPhoto
+        self.onPhotoSelected = onPhotoSelected // <-- Assign new parameter
     }
 }
