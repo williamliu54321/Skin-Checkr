@@ -50,14 +50,8 @@ class OnboardingCoordinator: ObservableObject {
     @MainActor
     func completeOnboarding() {
         print("Onboarding completed")
-        // 1. Save completion state to UserDefaults
         UserDefaults.standard.set(true, forKey: "hasCompletedOnboarding")
-        
-        // 2. Notify parent coordinator that onboarding is complete
         parentCoordinator?.onboardingCompleted()
-        
-        // Note: No need to clean up here. The parent coordinator
-        // will set this coordinator to nil, which will deallocate it.
     }
     
     // --- Paywall Logic ---

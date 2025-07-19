@@ -28,7 +28,6 @@ final class AppCoordinator: ObservableObject {
     }
     
     func checkInitialFlow() {
-        UserDefaults.standard.set(false, forKey: "hasCompletedOnboarding")
         let hasCompletedOnboarding = UserDefaults.standard.bool(forKey: "hasCompletedOnboarding")
         
         if !hasCompletedOnboarding {
@@ -158,7 +157,7 @@ final class AppCoordinator: ObservableObject {
                             await MainActor.run {
                                 withAnimation {
                                     // THIS IS THE LOGIC YOU ASKED FOR
-                                    self.currentScreen = .home
+                                    self.currentScreen = .resultsView
                                 }
                             }
                         }

@@ -9,10 +9,7 @@ import SwiftUI
 
 struct ResultsView: View {
     
-    // CORRECT: Use @ObservedObject because this view is GIVEN the ViewModel.
     @ObservedObject var viewModel: ResultsViewModel
-    
-    // The static sample data is no longer needed.
     
     var body: some View {
         ZStack {
@@ -21,14 +18,15 @@ struct ResultsView: View {
             Circle().fill(Color("skyBlue").opacity(0.3)).frame(width: 250, height: 250).blur(radius: 50).offset(x: -100, y: -150)
             Circle().fill(Color("lightBlue").opacity(0.4)).frame(width: 300, height: 300).blur(radius: 60).offset(x: 150, y: 100)
             
-            // This parent VStack separates the scrollable content from the sticky buttons.
+            // This parent VStack separates the scrollable content from the sticky button.
             VStack(spacing: 0) {
                 
+                // --- Scrollable Content Area ---
                 ScrollView {
                     VStack(spacing: 25) {
-                        // Header
+                        
+                        // --- Header ---
                         HStack {
-                            // CONNECTED: The button now calls the ViewModel's method.
                             Button(action: viewModel.backButtonTapped) {
                                 HStack(spacing: 5) {
                                     Image(systemName: "chevron.left").font(.system(size: 16, weight: .semibold))
@@ -40,9 +38,10 @@ struct ResultsView: View {
                         }
                         .padding(.horizontal, 20)
                         
+                        // --- Title ---
                         Text("Skin Checkr").font(.system(size: 38, weight: .bold)).foregroundColor(.white)
                         
-                        // DYNAMIC: Image container now uses the ViewModel's data.
+                        // --- Image Container ---
                         ZStack {
                             Rectangle().fill(Color.gray.opacity(0.6)).frame(height: 340)
                             if let image = viewModel.imageData {
@@ -53,8 +52,11 @@ struct ResultsView: View {
                         }
                         .cornerRadius(10).padding(.horizontal, 20)
                         
-                        // DYNAMIC: Results section now uses the ViewModel's data.
+                        // --- Results Section ---
                         VStack(spacing: 20) {
+                            Text("*Not a medical diagnosis. Consult a doctor.")
+                                .font(.system(size: 12)).foregroundColor(Color("paleBlue")).padding(.top, 5)
+
                             Text("Risk Assessment: \(viewModel.riskLevel)").font(.system(size: 20, weight: .semibold))
                             Divider().background(Color("lightBlue").opacity(0.7)).padding(.horizontal, 20)
                             HStack {
@@ -66,7 +68,6 @@ struct ResultsView: View {
                                     Text(viewModel.asymmetry); Text(viewModel.border); Text(viewModel.color)
                                 }
                                 Spacer()
-                                // TODO: Make these indicators dynamic based on the results
                                 VStack(alignment: .leading, spacing: 20) {
                                     Image(systemName: "checkmark.circle.fill").foregroundColor(.green)
                                     Image(systemName: "checkmark.circle.fill").foregroundColor(.green)
@@ -80,46 +81,35 @@ struct ResultsView: View {
                             Text(viewModel.aiNotes)
                                 .font(.system(size: 16)).multilineTextAlignment(.center).padding(.horizontal, 20)
                             
-                            Text("*Not a medical diagnosis. Consult a doctor.")
-                                .font(.system(size: 12)).foregroundColor(Color("paleBlue")).padding(.top, 5)
                         }
                         .foregroundColor(.white)
                     }
                     .padding(.bottom, 20)
                 } // End of ScrollView
                 
-                // --- Sticky Buttons Area ---
-                // We'll add the "Save" button back in here for completeness.
-                HStack(spacing: 15) {
-                    Button(action: viewModel.saveButtonTapped) {
-                        Text("Save this Mole")
-                            .font(.system(size: 16, weight: .semibold))
-                            .foregroundColor(.white)
-                            .frame(height: 50).frame(maxWidth: .infinity)
-                            .background(Color.clear) // Secondary action style
-                            .cornerRadius(10)
-                            .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color("lightBlue"), lineWidth: 1))
-                    }
+                // --- Sticky Button Area ---
+                HStack {
+                    // Spacer pushes the button to the right.
+                    Spacer()
                     
                     Button(action: viewModel.doneButtonTapped) {
                         Text("Done")
                             .font(.system(size: 16, weight: .semibold))
                             .foregroundColor(.white)
-                            .frame(height: 50).frame(maxWidth: .infinity)
-                            .background(Color("skyBlue")) // Primary action style
+                            .frame(width: 120, height: 50)
+                            // THE FIX: Restored your preferred transparent background style.
+                            .background(Color("skyBlue").opacity(0.3))
                             .cornerRadius(10)
+                            .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color("lightBlue"), lineWidth: 1))
                     }
                 }
                 .padding(.horizontal, 20)
-                .padding(.bottom, 20)
-                .padding(.top, 10)
             }
         }
     }
 }
 
 #Preview {
-    // The preview now creates a dummy ViewModel and passes it to the view.
     let previewViewModel = ResultsViewModel(
         riskLevel: "Medium Risk",
         asymmetry: "Low",
