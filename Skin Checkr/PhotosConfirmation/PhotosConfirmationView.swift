@@ -9,6 +9,9 @@ import SwiftUI
 
 // MARK: - Photos Confirmation Screen
 struct PhotosConfirmationView: View {
+    
+    @ObservedObject var viewModel: PhotosConfirmationViewModel
+    
     var body: some View {
         ZStack {
             // Background gradient
@@ -68,19 +71,12 @@ struct PhotosConfirmationView: View {
                 
                 // Image container
                 ZStack {
-                    Rectangle()
-                        .fill(Color.gray.opacity(0.6))
-                        .frame(height: 250)
-                    
-                    // Placeholder mole
-                    Circle()
-                        .fill(Color.black)
-                        .frame(width: 40, height: 40)
-                    
-                    // Focus indicator
-                    Circle()
-                        .stroke(Color("skyBlue"), lineWidth: 2)
-                        .frame(width: 60, height: 60)
+                    Image(uiImage: viewModel.image)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(height: 250) // Use a fixed frame for consistent layout
+                        .cornerRadius(10)
+                        .padding(.horizontal, 20)
                 }
                 .cornerRadius(10)
                 .padding(.horizontal, 20)
@@ -212,5 +208,15 @@ struct AlternativeActionButtons: View {
 }
 
 #Preview {
-    PhotosConfirmationView()
+    // To create a preview, we first create a dummy ViewModel.
+    let dummyViewModel = PhotosConfirmationViewModel(
+        image: UIImage(systemName: "photo.circle.fill")!,
+        onBack: { print("Back tapped") },
+        onRetake: { print("Retake tapped") },
+        onStartAnalysis: { _ in print("Start analysis tapped") }
+    )
+    
+    // Then we pass that ViewModel to the view.
+    return PhotosConfirmationView(viewModel: dummyViewModel)
 }
+
