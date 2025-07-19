@@ -100,6 +100,32 @@ final class AppCoordinator: ObservableObject {
 
     // ADD THIS NEW FUNCTION to your AppCoordinator.
     // It combines the paywall check and the network call.
+//    func beginAnalysisFlow(with image: UIImage) {
+//        Task {
+//            // First, check if the user has access (is subscribed).
+//            if await checkSubscriptionStatus() {
+//                // If they are, perform the analysis directly.
+//                await performAnalysis(with: image)
+//            } else {
+//                // If not, show the paywall.
+//                Superwall.shared.register(placement: "MainPaywall") {
+//                    // This is the combined dismiss/purchase handler.
+//                    Task {
+//                        if await self.checkSubscriptionStatus() {
+//                            // User just purchased. Now perform the analysis.
+//                            await self.performAnalysis(with: image)
+//                        } else {
+//                            // User dismissed. Go home.
+//                            await MainActor.run {
+//                                withAnimation { self.currentScreen = .home  }
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//    }
+    
     func beginAnalysisFlow(with image: UIImage) {
         Task {
             // First, check if the user has access (is subscribed).
@@ -110,16 +136,13 @@ final class AppCoordinator: ObservableObject {
                 // If not, show the paywall.
                 Superwall.shared.register(placement: "MainPaywall") {
                     // This is the combined dismiss/purchase handler.
+                    // For testing, we will run the analysis regardless of the outcome.
                     Task {
-                        if await self.checkSubscriptionStatus() {
-                            // User just purchased. Now perform the analysis.
-                            await self.performAnalysis(with: image)
-                        } else {
-                            // User dismissed. Go home.
-                            await MainActor.run {
-                                withAnimation { self.currentScreen = .home }
-                            }
-                        }
+                        // The original 'if/else' check is no longer needed here
+                        // because both purchase and dismiss now lead to the same action.
+                        
+                        // Whether they purchased or dismissed, we proceed with the analysis.
+                        await self.performAnalysis(with: image)
                     }
                 }
             }
