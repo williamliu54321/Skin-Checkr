@@ -21,7 +21,7 @@ final class AppCoordinator: ObservableObject {
 
     private var onboardingCoordinator: OnboardingCoordinator?
     
-    private let analysisService = AnalysisService()
+    private var analysisService: AnalysisServiceProtocol? // <-- Change to optional 'var'
 
     init() {
         Task {
@@ -149,26 +149,37 @@ final class AppCoordinator: ObservableObject {
         }
     }
     
-    // ADD THIS NEW, DEDICATED FUNCTION for the network call.
     private func performAnalysis(with image: UIImage) async {
-        // 1. Show the user we are working.
-        //    We can reuse the `analyzing` screen as a real loading view.
+        // 1. Show the loading screen.
         await MainActor.run {
             withAnimation { self.currentScreen = .analysisView }
         }
         
+        // --- THIS IS THE LAZY INITIALIZATION ---
+        // If the service hasn't been created yet, create it now.
+        if self.analysisService == nil {
+            self.analysisService = AnalysisService()
+        }
+        
+        // Use 'guard let' to safely unwrap the now-guaranteed service.
+        guard let analysisService = self.analysisService else {
+            // This case should theoretically never happen, but it's good practice.
+            print("❌ Error: Analysis service could not be created.")
+            await MainActor.run {
+                withAnimation { self.currentScreen = .home }
+            }
+            return
+        }
+        
         do {
-            // 2. Call the backend.
+            // 2. Call the backend using the now-unwrapped service.
             let resultText = try await analysisService.analyzeImage(image: image)
             
-            // 3. Store the result.
+            // ... (the rest of your function remains the same)
             self.analysisResult = resultText
-            
-            // 4. Navigate to the results screen.
             await MainActor.run {
                 withAnimation { self.currentScreen = .resultsView }
             }
-            
         } catch {
             // 5. Handle any errors.
             print("❌ Analysis failed: \(error.localizedDescription)")

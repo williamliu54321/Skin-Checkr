@@ -14,17 +14,22 @@ final class PhotosConfirmationViewModel: ObservableObject {
     // It's just a simple trigger.
     private let onStartAnalysis: (UIImage) -> Void
     
+    private let analysisService: AnalysisServiceProtocol
+
+    
     // UPDATE THE INITIALIZER
     init(
         image: UIImage,
         onBack: @escaping () -> Void,
         onRetake: @escaping () -> Void,
-        onStartAnalysis: @escaping (UIImage) -> Void // Now just takes an image
+        onStartAnalysis: @escaping (UIImage) -> Void,
+        analysisService: AnalysisServiceProtocol = AnalysisService() // <-- The Injection!
     ) {
         self.image = image
         self.onBack = onBack
         self.onRetake = onRetake
         self.onStartAnalysis = onStartAnalysis
+        self.analysisService = analysisService
     }
     
     func backButtonTapped() { onBack() }

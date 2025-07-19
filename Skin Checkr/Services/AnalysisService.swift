@@ -12,7 +12,7 @@ enum AnalysisError: Error {
     case decodingFailed
 }
 
-struct AnalysisService {
+struct AnalysisService: AnalysisServiceProtocol {
     
     func analyzeImage(image: UIImage) async throws -> String {
         
