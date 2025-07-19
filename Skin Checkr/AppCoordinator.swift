@@ -11,10 +11,12 @@ final class AppCoordinator: ObservableObject {
         case cameraInterfaceView
         case savedPhotosLibraryView
         case photosConfirmationView
+        case resultsView
     }
 
     @Published var currentScreen: Screen = .home
     @Published var capturedImage: UIImage?
+    @Published var analysisResult: String?
 
     private var onboardingCoordinator: OnboardingCoordinator?
 
@@ -84,14 +86,16 @@ final class AppCoordinator: ObservableObject {
                         self?.currentScreen = .cameraInterfaceView
                     }
                 },
-                onStartAnalysis: { [weak self] confirmedImage in
-                    // This logic is now passed to the ViewModel, which will call it
-                    // when its startAnalysisButtonTapped() method is triggered.
-                    print("Starting analysis on the confirmed image...")
+                onStartAnalysis: { [weak self] (analysisResult: String) in
+                    // a. Store the result from the cloud function.
+                    self?.analysisResult = analysisResult
+                    
+                    // b. Navigate to the new results screen.
                     withAnimation {
-                        self?.currentScreen = .home
+                        self?.currentScreen = .resultsView
                     }
                 }
+
             )
             
             // 2. CREATE THE VIEW and pass it the single ViewModel you just made.
@@ -148,6 +152,72 @@ final class AppCoordinator: ObservableObject {
          )
          return GetImageView(viewModel: viewModel)
      }
+    
+    // In AppCoordinator.swift
+
+    func makeResultsView() -> some View {
+        
+        // 1. SAFETY FIRST: Guard Clause
+        //    Safely unwrap the data needed for this screen. If either the image or the
+        //    analysis result is missing, we show a user-friendly error view instead of crashing.
+        guard let image = capturedImage, let resultString = analysisResult else {
+            return AnyView(
+                VStack {
+                    Text("Error: Missing analysis data.")
+                    Button("Go Home") {
+                        withAnimation {
+                            self.currentScreen = .home
+                        }
+                    }
+                }
+            )
+        }
+        
+        // 2. CREATE THE VIEWMODEL
+        //    We create an instance of the ResultsViewModel and inject all the necessary
+        //    data and the implementation for its action closures.
+        let viewModel = ResultsViewModel(
+            
+            // --- Data Injection ---
+            // TODO: In a real app, you would parse the `resultString` from OpenAI
+            // to get these specific values. For now, we use placeholders.
+            riskLevel: "Medium Risk",
+            asymmetry: "Low",
+            border: "Low",
+            color: "Medium",
+            imageData: image,
+            aiNotes: resultString, // Pass the real AI notes
+            
+            // --- Action Injection ---
+            // This is where you define what each button does.
+            
+            // Logic for the "Back" button
+            onBack: { [weak self] in
+                withAnimation {
+                    // Go back to the previous screen (the photo confirmation screen).
+                    self?.currentScreen = .photosConfirmationView
+                }
+            },
+            
+            // Logic for the "Save this Mole" button
+            onDone: { [weak self] in
+                withAnimation {
+                    // Navigate back to the main home screen.
+                    self?.currentScreen = .home
+                }
+            }, onSave: {
+                // Here you would implement the logic to save the image and its
+                // analysis data to Core Data, SwiftData, or a server.
+                print("Save action triggered in coordinator. Logic to persist data goes here.")
+                // For now, it does nothing but print.
+            }
+        )
+        
+        // 3. CREATE THE VIEW
+        //    Finally, create the ResultsView and pass it the fully configured ViewModel.
+        //    We wrap it in AnyView because the guard clause can return a different view type.
+        return AnyView(ResultsView(viewModel: viewModel))
+    }
         
     func startMainPaywall() {
         Task {

@@ -1,5 +1,5 @@
 //
-//  RootView 2.swift
+//  RootView.swift
 //  Skin Checkr
 //
 //  Created by William Liu on 2025-07-09.
@@ -8,62 +8,44 @@
 import Foundation
 import SwiftUI
 
-
 struct RootView: View {
     @ObservedObject var coordinator: AppCoordinator
     
     var body: some View {
         ZStack {
+            // Your background gradients and circles are perfect.
             LinearGradient(
-                gradient: Gradient(colors: [
-                    Color("darkBlue"),
-                    Color("deeperBlue")
-                ]),
+                gradient: Gradient(colors: [Color("darkBlue"), Color("deeperBlue")]),
                 startPoint: .topLeading,
                 endPoint: .bottomTrailing
             )
             .edgesIgnoringSafeArea(.all)
             
-            // Background decorative elements
-            Circle()
-                .fill(Color("skyBlue").opacity(0.3))
-                .frame(width: 250, height: 250)
-                .blur(radius: 50)
-                .offset(x: -100, y: -150)
+            Circle().fill(Color("skyBlue").opacity(0.3)).frame(width: 250, height: 250).blur(radius: 50).offset(x: -100, y: -150)
+            Circle().fill(Color("lightBlue").opacity(0.4)).frame(width: 300, height: 300).blur(radius: 60).offset(x: 150, y: 100)
             
-            Circle()
-                .fill(Color("lightBlue").opacity(0.4))
-                .frame(width: 300, height: 300)
-                .blur(radius: 60)
-                .offset(x: 150, y: 100)
-            
+            // The main switch that controls which view is shown.
             switch coordinator.currentScreen {
+                
             case .onboarding:
                 coordinator.makeOnboardingView()
-                    // This is perfect. The onboarding view slides away to the left,
-                    // revealing the home screen which was already there (.identity).
                     .transition(.asymmetric(insertion: .identity, removal: .move(edge: .leading)))
-
+                
             case .home:
                 coordinator.makeHomeView()
-                    // The home screen should fade in and out. It's the "base" layer.
-                    // It doesn't slide, the other views slide on TOP of it.
                     .transition(.opacity.animation(.easeInOut))
                 
-            case .getImageView, .cameraInterfaceView, .savedPhotosLibraryView, .photosConfirmationView:
-                // GROUPING all hierarchical views together.
-                // This is the key to fixing the overlay issue.
-                // Every view in this flow uses the same "push" animation rule.
+            // THE FIX #1: Correctly group all the views that belong to the "image analysis" flow.
+            // We've added .resultsView to this group and removed the unused .savedPhotosLibraryView.
+            case .getImageView, .cameraInterfaceView, .photosConfirmationView, .resultsView:
                 
-                // When you go from GetImage -> Camera, the GetImage view slides to the left.
-                // When you go from Camera -> GetImage (back), the Camera view slides to the right.
+                // This transition is defined once and used by all views in this group.
                 let pushTransition = AnyTransition.asymmetric(
                     insertion: .move(edge: .trailing),
                     removal: .move(edge: .leading)
                 ).animation(.easeInOut(duration: 0.4))
-
-                // The switch determines WHICH view is shown,
-                // but the transition is the same for all of them.
+                
+                // This nested switch determines WHICH view from the group is currently visible.
                 switch coordinator.currentScreen {
                 case .getImageView:
                     coordinator.makeGetImageView()
@@ -74,13 +56,23 @@ struct RootView: View {
                 case .photosConfirmationView:
                     coordinator.makePhotosConfirmationView()
                         .transition(pushTransition)
+                case .resultsView:
+                    coordinator.makeResultsView()
+                        .transition(pushTransition)
                 default:
-                    EmptyView() // Should not happen, but required for switch
+                    // This is a safety net required by the compiler. It should never be reached.
+                    EmptyView()
                 }
+                
+            // This is a default case for the outer switch, in case you add more screen types later.
+            // For example, if you forgot to add a screen to the group above.
+            default:
+                Text("Unhandled Screen State")
             }
         }
-        // Applying a global animation makes all state changes smooth
+        // THE FIX #2: The global animation modifier is now attached to the ZStack.
+        // This ensures that ANY change to `coordinator.currentScreen` will trigger a smooth
+        // animated transition between the old view and the new view.
         .animation(.easeInOut, value: coordinator.currentScreen)
     }
-
 }

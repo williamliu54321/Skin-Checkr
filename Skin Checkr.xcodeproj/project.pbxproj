@@ -22,6 +22,7 @@
 		EF9B8A672E2B3222000DE136 /* PhotosConfirmationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9B8A662E2B3222000DE136 /* PhotosConfirmationViewModel.swift */; };
 		EF9B8A6E2E2B41E1000DE136 /* AnalysisService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9B8A6D2E2B41D5000DE136 /* AnalysisService.swift */; };
 		EF9B8A752E2B46F4000DE136 /* PhotoPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9B8A742E2B46F4000DE136 /* PhotoPicker.swift */; };
+		EF9B8A792E2B89AD000DE136 /* ResultsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9B8A782E2B89AD000DE136 /* ResultsViewModel.swift */; };
 		EFAC068D2E1DEC8C0072EB4A /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFAC068C2E1DEC850072EB4A /* AppCoordinator.swift */; };
 		EFAC068F2E1E923D0072EB4A /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFAC068E2E1E923D0072EB4A /* RootView.swift */; };
 		EFAC06982E1E95240072EB4A /* SkinCheckrApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFAC06972E1E951E0072EB4A /* SkinCheckrApp.swift */; };
@@ -66,6 +67,7 @@
 		EF9B8A662E2B3222000DE136 /* PhotosConfirmationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosConfirmationViewModel.swift; sourceTree = "<group>"; };
 		EF9B8A6D2E2B41D5000DE136 /* AnalysisService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalysisService.swift; sourceTree = "<group>"; };
 		EF9B8A742E2B46F4000DE136 /* PhotoPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPicker.swift; sourceTree = "<group>"; };
+		EF9B8A782E2B89AD000DE136 /* ResultsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsViewModel.swift; sourceTree = "<group>"; };
 		EFAC068C2E1DEC850072EB4A /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		EFAC068E2E1E923D0072EB4A /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		EFAC06972E1E951E0072EB4A /* SkinCheckrApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkinCheckrApp.swift; sourceTree = "<group>"; };
@@ -213,6 +215,7 @@
 				EF9B8A5A2E29C260000DE136 /* GetImage */,
 				EF78E67D2E19BCAA006AFF44 /* ScanHistoryView.swift */,
 				EF78E6712E19ACA9006AFF44 /* ResultsView.swift */,
+				EF9B8A782E2B89AD000DE136 /* ResultsViewModel.swift */,
 				EF9B8A5B2E29C27B000DE136 /* CameraInterfaceView */,
 				EF9B8A712E2B451C000DE136 /* SavedPhotosLibraryView */,
 				EF9B8A6C2E2B41A2000DE136 /* Services */,
@@ -393,6 +396,7 @@
 				EF4FF0702E28782600C0EDB6 /* GetImageViewModel.swift in Sources */,
 				EF9B8A5D2E29C508000DE136 /* CameraInterfaceViewModel.swift in Sources */,
 				EF78E67A2E19B7BB006AFF44 /* CameraInterfaceView.swift in Sources */,
+				EF9B8A792E2B89AD000DE136 /* ResultsViewModel.swift in Sources */,
 				EF78E6912E1A6A66006AFF44 /* AppBackgroundModifier.swift in Sources */,
 				EF78E6722E19ACA9006AFF44 /* ResultsView.swift in Sources */,
 				EF9B8A6E2E2B41E1000DE136 /* AnalysisService.swift in Sources */,
