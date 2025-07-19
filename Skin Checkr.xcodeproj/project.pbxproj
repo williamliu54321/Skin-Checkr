@@ -24,6 +24,9 @@
 		EF9B8A792E2B89AD000DE136 /* ResultsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9B8A782E2B89AD000DE136 /* ResultsViewModel.swift */; };
 		EF9B8A7D2E2B9215000DE136 /* AnalysingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9B8A7C2E2B9215000DE136 /* AnalysingView.swift */; };
 		EF9B8A7F2E2BC6F8000DE136 /* AnalysisServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9B8A7E2E2BC6F8000DE136 /* AnalysisServiceProtocol.swift */; };
+		EF9B8A822E2BD1D7000DE136 /* FirebaseFunctions in Frameworks */ = {isa = PBXBuildFile; productRef = EF9B8A812E2BD1D7000DE136 /* FirebaseFunctions */; };
+		EF9B8A842E2BD2C5000DE136 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EF9B8A832E2BD2C5000DE136 /* GoogleService-Info.plist */; };
+		EF9B8A862E2BD5A1000DE136 /* AnalysisResultModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9B8A852E2BD5A1000DE136 /* AnalysisResultModel.swift */; };
 		EFAC068D2E1DEC8C0072EB4A /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFAC068C2E1DEC850072EB4A /* AppCoordinator.swift */; };
 		EFAC068F2E1E923D0072EB4A /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFAC068E2E1E923D0072EB4A /* RootView.swift */; };
 		EFAC06982E1E95240072EB4A /* SkinCheckrApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFAC06972E1E951E0072EB4A /* SkinCheckrApp.swift */; };
@@ -70,6 +73,8 @@
 		EF9B8A782E2B89AD000DE136 /* ResultsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsViewModel.swift; sourceTree = "<group>"; };
 		EF9B8A7C2E2B9215000DE136 /* AnalysingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalysingView.swift; sourceTree = "<group>"; };
 		EF9B8A7E2E2BC6F8000DE136 /* AnalysisServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalysisServiceProtocol.swift; sourceTree = "<group>"; };
+		EF9B8A832E2BD2C5000DE136 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		EF9B8A852E2BD5A1000DE136 /* AnalysisResultModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalysisResultModel.swift; sourceTree = "<group>"; };
 		EFAC068C2E1DEC850072EB4A /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		EFAC068E2E1E923D0072EB4A /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		EFAC06972E1E951E0072EB4A /* SkinCheckrApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkinCheckrApp.swift; sourceTree = "<group>"; };
@@ -92,6 +97,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EF1679492E1C343E00DBE05F /* SuperwallKit in Frameworks */,
+				EF9B8A822E2BD1D7000DE136 /* FirebaseFunctions in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -180,6 +186,7 @@
 			children = (
 				EF78E6712E19ACA9006AFF44 /* ResultsView.swift */,
 				EF9B8A782E2B89AD000DE136 /* ResultsViewModel.swift */,
+				EF9B8A852E2BD5A1000DE136 /* AnalysisResultModel.swift */,
 			);
 			path = Results;
 			sourceTree = "<group>";
@@ -224,6 +231,7 @@
 		EFEB61762E17E914001485C1 /* Skin Checkr */ = {
 			isa = PBXGroup;
 			children = (
+				EF9B8A832E2BD2C5000DE136 /* GoogleService-Info.plist */,
 				EFAC06972E1E951E0072EB4A /* SkinCheckrApp.swift */,
 				EFEB61742E17E914001485C1 /* Skin_Checkr.entitlements */,
 				EFEB61722E17E914001485C1 /* Assets.xcassets */,
@@ -233,10 +241,10 @@
 				EF9B8A592E29C247000DE136 /* Home */,
 				EF9B8A7B2E2B91FA000DE136 /* Analysis */,
 				EF78E68F2E1A6A58006AFF44 /* Components */,
-				EF9B8A7A2E2B91CA000DE136 /* Results */,
 				EF9B8A5A2E29C260000DE136 /* GetImage */,
 				EF9B8A5B2E29C27B000DE136 /* CameraInterfaceView */,
 				EF9B8A712E2B451C000DE136 /* SavedPhotosLibraryView */,
+				EF9B8A7A2E2B91CA000DE136 /* Results */,
 				EF9B8A5F2E29C6B0000DE136 /* PhotosConfirmation */,
 				EF9B8A6C2E2B41A2000DE136 /* Services */,
 			);
@@ -278,6 +286,7 @@
 			name = "Skin Checkr";
 			packageProductDependencies = (
 				EF1679482E1C343E00DBE05F /* SuperwallKit */,
+				EF9B8A812E2BD1D7000DE136 /* FirebaseFunctions */,
 			);
 			productName = "Skin Checkr";
 			productReference = EFEB61372E17E71D001485C1 /* Skin Checkr.app */;
@@ -357,6 +366,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				EF1679472E1C343E00DBE05F /* XCRemoteSwiftPackageReference "Superwall-iOS" */,
+				EF9B8A802E2BD1D7000DE136 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = EFEB61382E17E71D001485C1 /* Products */;
@@ -376,6 +386,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EFEB61792E17E914001485C1 /* Assets.xcassets in Resources */,
+				EF9B8A842E2BD2C5000DE136 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -411,6 +422,7 @@
 				EFEB61772E17E914001485C1 /* HomeView.swift in Sources */,
 				EF9B8A632E29D91A000DE136 /* CameraFlowContainerView.swift in Sources */,
 				EFAC068F2E1E923D0072EB4A /* RootView.swift in Sources */,
+				EF9B8A862E2BD5A1000DE136 /* AnalysisResultModel.swift in Sources */,
 				EF9B8A672E2B3222000DE136 /* PhotosConfirmationViewModel.swift in Sources */,
 				EF9B8A752E2B46F4000DE136 /* PhotoPicker.swift in Sources */,
 				EF4FF0702E28782600C0EDB6 /* GetImageViewModel.swift in Sources */,
@@ -790,6 +802,14 @@
 				minimumVersion = 4.5.2;
 			};
 		};
+		EF9B8A802E2BD1D7000DE136 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 12.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -797,6 +817,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = EF1679472E1C343E00DBE05F /* XCRemoteSwiftPackageReference "Superwall-iOS" */;
 			productName = SuperwallKit;
+		};
+		EF9B8A812E2BD1D7000DE136 /* FirebaseFunctions */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EF9B8A802E2BD1D7000DE136 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFunctions;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

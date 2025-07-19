@@ -1,63 +1,64 @@
 import SwiftUI
+import FirebaseFunctions
 
-struct AnalysisResponse: Codable {
-    let result: String
+// This is the struct for the OUTER part of the response from your Firebase function.
+// It tells the decoder to look for a key named "result" which contains the model.
+struct FirebaseFunctionResponse: Codable {
+    let result: AnalysisResult
 }
 
-enum AnalysisError: Error {
-    case invalidURL
+// Custom errors for better debugging.
+enum AnalysisError: Error, LocalizedError {
     case imageDataConversionFailed
-    case networkRequestFailed(Error)
-    case invalidServerResponse
-    case decodingFailed
+    case functionCallFailed(Error)
+    
+    var errorDescription: String? {
+        switch self {
+        case .imageDataConversionFailed:
+            return "Could not convert image to data."
+        case .functionCallFailed(let error):
+            return "The analysis request failed: \(error.localizedDescription)"
+        }
+    }
 }
 
+
+// The "live" service that talks to Firebase.
 struct AnalysisService: AnalysisServiceProtocol {
     
-    func analyzeImage(image: UIImage) async throws -> String {
-        
-        guard let url = URL(string: "https://YOUR-REGION-YOUR-PROJECT-ID.cloudfunctions.net/YOUR-FUNCTION-NAME") else {
-            throw AnalysisError.invalidURL
-        }
+    private let functions = Functions.functions()
+    
+    // The return type is now your `AnalysisResult` model.
+    func analyzeImage(image: UIImage) async throws -> AnalysisResult {
         
         guard let imageData = image.jpegData(compressionQuality: 0.8) else {
             throw AnalysisError.imageDataConversionFailed
         }
         
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        
-        let boundary = UUID().uuidString
-        request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
-        
-        var body = Data()
-        
-        body.append("--\(boundary)\r\n".data(using: .utf8)!)
-        body.append("Content-Disposition: form-data; name=\"image\"; filename=\"analysis.jpg\"\r\n".data(using: .utf8)!)
-        body.append("Content-Type: image/jpeg\r\n\r\n".data(using: .utf8)!)
-        body.append(imageData)
-        body.append("\r\n".data(using: .utf8)!)
-        
-        body.append("--\(boundary)--\r\n".data(using: .utf8)!)
-        
-        request.httpBody = body
+        let imageBase64 = imageData.base64EncodedString()
+        let requestData = ["imageBase64": imageBase64]
         
         do {
-            let (data, response) = try await URLSession.shared.data(for: request)
+            // Call the cloud function by name.
+            let result = try await functions.httpsCallable("analyzeImage").call(requestData)
             
-            // Check for a successful server response (HTTP 200 OK).
-            guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
-                throw AnalysisError.invalidServerResponse
-            }
+            // Decode the new, more complex response.
+            // 1. Convert the raw `result.data` to JSON Data.
+            let jsonData = try JSONSerialization.data(withJSONObject: result.data)
             
-            // 6. Decode the JSON response from the cloud function.
-            let analysisResponse = try JSONDecoder().decode(AnalysisResponse.self, from: data)
-            return analysisResponse.result
+            // 2. Use a custom JSONDecoder if your model uses different date formats.
+            let decoder = JSONDecoder()
+            decoder.dateDecodingStrategy = .iso8601 // Standard for dates
+            
+            // 3. Decode the outer FirebaseFunctionResponse object.
+            let decodedResponse = try decoder.decode(FirebaseFunctionResponse.self, from: jsonData)
+            
+            // 4. Return the nested AnalysisResult model.
+            return decodedResponse.result
             
         } catch {
-            // Rethrow any network or decoding errors for the ViewModel to handle.
-            print("❌ Network request failed: \(error)")
-            throw error
+            print("❌ Firebase Cloud Function call or decoding failed: \(error)")
+            throw AnalysisError.functionCallFailed(error)
         }
     }
 }

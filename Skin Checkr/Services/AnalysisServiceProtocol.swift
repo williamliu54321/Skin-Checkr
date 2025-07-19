@@ -1,30 +1,34 @@
-//
-//  AnalysisServiceProtocol.swift
-//  Skin Checkr
-//
 //  Created by William Liu on 2025-07-19.
 //
 
 import SwiftUI
-// You can add this to the top of your AnalysisService.swift file
+
+
+// This is the "contract" that both the real and mock services must follow.
 protocol AnalysisServiceProtocol {
-    func analyzeImage(image: UIImage) async throws -> String
+    func analyzeImage(image: UIImage) async throws -> AnalysisResult
 }
+
+// This is the mock implementation of the contract.
 struct MockAnalysisService: AnalysisServiceProtocol {
     
     // This property lets you control whether the mock should succeed or fail.
     var shouldSucceed: Bool = true
     
-    func analyzeImage(image: UIImage) async throws -> String {
-        // Simulate a short network delay to make the UI feel real.
+    // THE FIX: The return type is now correctly set to `AnalysisResult`.
+    func analyzeImage(image: UIImage) async throws -> AnalysisResult {
+        
+        // Simulate a short 2-second network delay to make the UI feel real.
         try? await Task.sleep(for: .seconds(2))
         
         if shouldSucceed {
-            // Return a realistic-looking fake success message.
-            return "This is a mock analysis result. The mole shows low asymmetry, a regular border, and consistent color. This is not a medical diagnosis."
+            // THE FIX: On success, return a complete, valid AnalysisResult model object.
+            // We can use the handy `.mock` static property on your model.
+            return AnalysisResult.mock
         } else {
-            // Return a fake error.
-            throw AnalysisError.invalidServerResponse
+            // THE FIX: On failure, use the `throw` keyword to send a real Error object.
+            // This correctly simulates a network or server failure.
+            throw AnalysisError.imageDataConversionFailed
         }
     }
 }

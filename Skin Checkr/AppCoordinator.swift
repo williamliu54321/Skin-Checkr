@@ -17,7 +17,7 @@ final class AppCoordinator: ObservableObject {
 
     @Published var currentScreen: Screen = .home
     @Published var capturedImage: UIImage?
-    @Published var analysisResult: String?
+    @Published var analysisResult: AnalysisResult?
 
     private var onboardingCoordinator: OnboardingCoordinator?
     
@@ -238,12 +238,15 @@ final class AppCoordinator: ObservableObject {
     
     // In AppCoordinator.swift
 
+    // In AppCoordinator.swift
+    // In AppCoordinator.swift
+
     func makeResultsView() -> some View {
         
-        // 1. SAFETY FIRST: Guard Clause
-        //    Safely unwrap the data needed for this screen. If either the image or the
-        //    analysis result is missing, we show a user-friendly error view instead of crashing.
-        guard let image = capturedImage, let resultString = analysisResult else {
+        // 1. SAFETY FIRST: Guard for the model.
+        //    Safely unwrap the entire AnalysisResult model. If it's missing,
+        //    show a user-friendly error view instead of crashing.
+        guard let resultModel = analysisResult else {
             return AnyView(
                 VStack {
                     Text("Error: Missing analysis data.")
@@ -256,21 +259,15 @@ final class AppCoordinator: ObservableObject {
             )
         }
         
+        // 2. CREATE THE VIEWMODEL.
+        //    The initializer is now much cleaner. We just pass the single model object
+        //    and provide the implementation for the button action closures.
         let viewModel = ResultsViewModel(
             
             // --- Data Injection ---
-            // TODO: In a real app, you would parse the `resultString` from OpenAI
-            // to get these specific values. For now, we use placeholders.
-            riskLevel: "Medium Risk",
-            asymmetry: "Low",
-            border: "Low",
-            color: "Medium",
-            imageData: image,
-            aiNotes: resultString, // Pass the real AI notes
+            result: resultModel,
             
             // --- Action Injection ---
-            // This is where you define what each button does.
-            
             // Logic for the "Back" button
             onBack: { [weak self] in
                 withAnimation {
@@ -279,26 +276,27 @@ final class AppCoordinator: ObservableObject {
                 }
             },
             
-            // Logic for the "Save this Mole" button
+            // Logic for the "Done" button
             onDone: { [weak self] in
                 withAnimation {
                     // Navigate back to the main home screen.
                     self?.currentScreen = .home
                 }
-            }, onSave: {
-                // Here you would implement the logic to save the image and its
-                // analysis data to Core Data, SwiftData, or a server.
-                print("Save action triggered in coordinator. Logic to persist data goes here.")
-                // For now, it does nothing but print.
+            },
+            
+            // Logic for the "Save this Mole" button
+            onSave: {
+                // Here you would implement the logic to save the `resultModel`.
+                // For now, it does nothing but print a message.
+                print("Save action triggered in coordinator for result ID: \(resultModel.id)")
             }
         )
         
-        // 3. CREATE THE VIEW
-        //    Finally, create the ResultsView and pass it the fully configured ViewModel.
+        // 3. CREATE THE VIEW.
+        //    Pass the fully configured ViewModel to the ResultsView.
         //    We wrap it in AnyView because the guard clause can return a different view type.
         return AnyView(ResultsView(viewModel: viewModel))
     }
-        
     func startMainPaywall() {
         Task {
             if await checkSubscriptionStatus() {

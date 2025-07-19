@@ -110,16 +110,19 @@ struct ResultsView: View {
 }
 
 #Preview {
+    // 1. Create a mock instance of your AnalysisResult model.
+    //    We can use the handy `static var mock` we created on the model itself.
+    let mockResult = AnalysisResult.mock
+    
+    // 2. Create the ViewModel using the new, simpler initializer.
+    //    We just pass the single mockResult model object and empty closures.
     let previewViewModel = ResultsViewModel(
-        riskLevel: "Medium Risk",
-        asymmetry: "Low",
-        border: "Low",
-        color: "Medium",
-        imageData: UIImage(systemName: "photo"),
-        aiNotes: "Our AI notes consistent color and smooth edges. No immediate concerns detected.",
-        onBack: {},
-        onDone: {},
-        onSave: {}
+        result: mockResult,
+        onBack: { print("Preview: Back Tapped") },
+        onDone: { print("Preview: Done Tapped") },
+        onSave: { print("Preview: Save Tapped") }
     )
+    
+    // 3. Create the view and pass it the ViewModel.
     return ResultsView(viewModel: previewViewModel)
 }
