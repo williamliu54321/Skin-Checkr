@@ -12,6 +12,7 @@ final class AppCoordinator: ObservableObject {
         case savedPhotosLibraryView
         case photosConfirmationView
         case resultsView
+        case analysisView
     }
 
     @Published var currentScreen: Screen = .home
@@ -86,16 +87,12 @@ final class AppCoordinator: ObservableObject {
                         self?.currentScreen = .cameraInterfaceView
                     }
                 },
-                onStartAnalysis: { [weak self] (analysisResult: String) in
-                    // a. Store the result from the cloud function.
-                    self?.analysisResult = analysisResult
-                    
-                    // b. Navigate to the new results screen.
+                onStartAnalysis: { [weak self] _ in
+                    // Instead of calling the network directly, navigate to the analyzing screen.
                     withAnimation {
-                        self?.currentScreen = .resultsView
+                        self?.currentScreen = .analysisView
                     }
                 }
-
             )
             
             // 2. CREATE THE VIEW and pass it the single ViewModel you just made.
@@ -104,6 +101,29 @@ final class AppCoordinator: ObservableObject {
         } else {
             // Fallback view remains the same.
             return AnyView(Text("Error: No image available."))
+        }
+    }
+    
+    // B. Add the new maker function for the AnalyzingView
+    func makeAnalyzingView() -> some View {
+        AnalyzingView(
+            onAnalysisComplete: { [weak self] in
+                // When the 4-second "analysis" is done, we call the paywall logic.
+                self?.startAnalysisPaywall()
+            }
+        )
+    }
+
+    // C. Create a dedicated paywall function for this flow
+    func startAnalysisPaywall() {
+        Task {
+            if await checkSubscriptionStatus() {
+                self.currentScreen = .home
+            } else {
+                Superwall.shared.register(placement: "AnalysisPaywall") {
+                    self.currentScreen = .home
+                }
+            }
         }
     }
 
