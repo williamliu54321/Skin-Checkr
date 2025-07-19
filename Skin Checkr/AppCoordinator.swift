@@ -24,37 +24,47 @@ final class AppCoordinator: ObservableObject {
         }
     }
     
-    // --- STEP 2: DEFINING THE HANDOFF LOGIC ---
-    // This logic is defined here, inside the function that creates the camera view.
+    func checkInitialFlow() {
+        UserDefaults.standard.set(false, forKey: "hasCompletedOnboarding")
+        let hasCompletedOnboarding = UserDefaults.standard.bool(forKey: "hasCompletedOnboarding")
+        
+        if !hasCompletedOnboarding {
+            startOnboarding()
+        } else {
+            self.currentScreen = .home
+        }
+    }
+    
+    func startOnboarding() {
+        let coordinator = OnboardingCoordinator(parentCoordinator: self)
+        self.onboardingCoordinator = coordinator
+        self.currentScreen = .onboarding
+    }
+    
+    func onboardingCompleted() {
+        withAnimation(.easeInOut(duration: 0.4)) {
+            self.onboardingCoordinator = nil
+            self.currentScreen = .home
+        }
+    }
+    
     func makeCameraInterfaceView() -> some View {
-        // We create the CameraFlowContainerView and give it the "instructions"
-        // for what to do when its events happen.
         return CameraFlowContainerView(
-            
-            // Instruction for the 'Back' button
-            onBack: { [weak self] in
+                        onBack: { [weak self] in
                 withAnimation {
                     self?.currentScreen = .getImageView
                 }
             },
             
-            // Instruction for what happens AFTER a photo is taken
-            // This is the critical handoff from the camera to the coordinator.
             onPhotoTaken: { [weak self] image in
-                // 1. The coordinator CATCHES the image and stores it.
                 self?.capturedImage = image
                 
-                // 2. The coordinator NAVIGATES to the next screen.
                 withAnimation {
                     self?.currentScreen = .photosConfirmationView
                 }
             }
         )
     }
-
-    // --- STEP 3: USING THE HANDED-OFF DATA ---
-    // This function uses the `capturedImage` that was set in the step above.
-    // In AppCoordinator.swift
 
     func makePhotosConfirmationView() -> some View {
         // Safely unwrap the image from the coordinator's state.
@@ -90,32 +100,6 @@ final class AppCoordinator: ObservableObject {
         } else {
             // Fallback view remains the same.
             return AnyView(Text("Error: No image available."))
-        }
-    }
-
-    // --- Other Functions (No changes needed below this line) ---
-    
-    func checkInitialFlow() {
-        UserDefaults.standard.set(false, forKey: "hasCompletedOnboarding")
-        let hasCompletedOnboarding = UserDefaults.standard.bool(forKey: "hasCompletedOnboarding")
-        
-        if !hasCompletedOnboarding {
-            startOnboarding()
-        } else {
-            self.currentScreen = .home
-        }
-    }
-    
-    func startOnboarding() {
-        let coordinator = OnboardingCoordinator(parentCoordinator: self)
-        self.onboardingCoordinator = coordinator
-        self.currentScreen = .onboarding
-    }
-    
-    func onboardingCompleted() {
-        withAnimation(.easeInOut(duration: 0.4)) {
-            self.onboardingCoordinator = nil
-            self.currentScreen = .home
         }
     }
 
@@ -162,16 +146,36 @@ final class AppCoordinator: ObservableObject {
         return GetImageView(viewModel: viewModel)
     }
     
+    // In AppCoordinator.swift, replace the existing function with this:
+
     func makeSavedPhotosLibraryView() -> some View {
-        VStack {
-            Text("Photo Picker Placeholder")
-            Button("Go Back") {
+        
+        // Create the ViewModel and provide the logic for what its closures should do.
+        let viewModel = SavedPhotosLibraryViewModel(
+            
+            // The logic for the "Back" button.
+            onBack: { [weak self] in
                 withAnimation {
-                    self.currentScreen = .getImageView
+                    self?.currentScreen = .getImageView
+                }
+            },
+            
+            // The logic for what happens after a photo is selected from the library.
+            onPhotoSelected: { [weak self] image in
+                // 1. Store the selected image.
+                self?.capturedImage = image
+                
+                // 2. Navigate to the confirmation screen.
+                withAnimation {
+                    self?.currentScreen = .photosConfirmationView
                 }
             }
-        }
+        )
+        
+        // Create the view and pass it the ViewModel.
+        return SavedPhotosLibraryView(viewModel: viewModel)
     }
+
         
     func startMainPaywall() {
         Task {
