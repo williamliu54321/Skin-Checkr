@@ -88,7 +88,7 @@ final class AppCoordinator: ObservableObject {
                     }
                 },
                 onStartAnalysis: { [weak self] _ in
-                    // Instead of calling the network directly, navigate to the analyzing screen.
+                    print("✅ Coordinator received 'Start Analysis' signal. Attempting to navigate...")
                     withAnimation {
                         self?.currentScreen = .analysisView
                     }
@@ -105,7 +105,7 @@ final class AppCoordinator: ObservableObject {
     }
     
     // B. Add the new maker function for the AnalyzingView
-    func makeAnalyzingView() -> some View {
+    func makeAnalysingView() -> some View {
         AnalyzingView(
             onAnalysisComplete: { [weak self] in
                 // When the 4-second "analysis" is done, we call the paywall logic.
@@ -114,19 +114,59 @@ final class AppCoordinator: ObservableObject {
         )
     }
 
-    // C. Create a dedicated paywall function for this flow
+    // In AppCoordinator.swift
+
     func startAnalysisPaywall() {
         Task {
+            // Step 1: Check if the user is ALREADY subscribed before showing anything.
             if await checkSubscriptionStatus() {
-                self.currentScreen = .home
+                
+                // --- PATH A: USER IS ALREADY SUBSCRIBED ---
+                // They get to see the results immediately, no paywall needed.
+                print("User is already subscribed. Navigating to results.")
+                withAnimation {
+                    self.currentScreen = .resultsView
+                }
+                
             } else {
-                Superwall.shared.register(placement: "AnalysisPaywall") {
-                    self.currentScreen = .home
+                
+                // --- PATH B: USER IS NOT SUBSCRIBED ---
+                // Present the paywall.
+                print("User is not subscribed. Showing paywall...")
+                
+                Superwall.shared.register(placement: "MainPaywall") {
+                    
+                    // --- THIS CODE RUNS AFTER THE PAYWALL IS DISMISSED ---
+                    print("Paywall was dismissed. Re-checking subscription status...")
+                    
+                    // We must check the status again to see WHY it was dismissed.
+                    Task {
+                        if await self.checkSubscriptionStatus() {
+                            
+                            // If status is now TRUE, it means the user just purchased.
+                            print("Purchase successful! Navigating to results.")
+                            await MainActor.run {
+                                withAnimation {
+                                    self.currentScreen = .resultsView
+                                }
+                            }
+                            
+                        } else {
+                            
+                            // If status is still FALSE, it means the user tapped the 'X' button.
+                            print("User dismissed without purchasing. Navigating home.")
+                            await MainActor.run {
+                                withAnimation {
+                                    // THIS IS THE LOGIC YOU ASKED FOR
+                                    self.currentScreen = .home
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }
     }
-
     func makeHomeView() -> some View {
         let viewModel = HomeViewModel(
             placePaywall: { [weak self] in
@@ -193,9 +233,6 @@ final class AppCoordinator: ObservableObject {
             )
         }
         
-        // 2. CREATE THE VIEWMODEL
-        //    We create an instance of the ResultsViewModel and inject all the necessary
-        //    data and the implementation for its action closures.
         let viewModel = ResultsViewModel(
             
             // --- Data Injection ---

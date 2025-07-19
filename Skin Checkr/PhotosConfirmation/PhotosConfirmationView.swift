@@ -10,28 +10,13 @@ import SwiftUI
 // MARK: - Photos Confirmation Screen
 struct PhotosConfirmationView: View {
     
+    // The view is given its ViewModel from the coordinator.
+    // This ViewModel is now simpler, as it no longer manages a loading state.
     @ObservedObject var viewModel: PhotosConfirmationViewModel
     
     var body: some View {
-        // We wrap the entire UI in a top-level ZStack. This allows us to
-        // easily place the loading overlay on top of all other content.
-        ZStack {
-            
-            // This is your main UI content.
-            mainContentView
-                // This modifier disables all buttons within the view when
-                // the ViewModel's `isAnalyzing` property is true.
-                .disabled(viewModel.isAnalyzing)
-            
-            // This loading overlay will only appear when the analysis is in progress.
-            if viewModel.isAnalyzing {
-                loadingOverlay
-            }
-        }
-    }
-    
-    // Extracted your main UI into a computed property for better organization.
-    private var mainContentView: some View {
+        // The view no longer needs a ZStack for a loading overlay.
+        // The main content is the top-level view.
         ZStack {
             // Background gradient (unchanged)
             LinearGradient(
@@ -49,7 +34,7 @@ struct PhotosConfirmationView: View {
             VStack(spacing: 20) {
                 // Header
                 HStack {
-                    // CONNECTED: The "Back" button now calls the ViewModel's method.
+                    // CONNECTED: The "Back" button calls the ViewModel's method.
                     Button(action: viewModel.backButtonTapped) {
                         HStack(spacing: 5) {
                             Image(systemName: "chevron.left").font(.system(size: 16, weight: .semibold))
@@ -67,16 +52,14 @@ struct PhotosConfirmationView: View {
                 }
                 .padding(.horizontal, 20).padding(.bottom, 10)
                 
-                // DYNAMIC IMAGE: This now correctly displays the image from the ViewModel.
+                // DYNAMIC IMAGE: This correctly displays the image from the ViewModel.
                 Image(uiImage: viewModel.image)
                     .resizable()
                     .scaledToFit()
                     .frame(height: 250)
                     .cornerRadius(10)
                     .padding(.horizontal, 20)
-                
-                // The placeholder text component is no longer needed and has been removed.
-                
+
                 Spacer().frame(height: 20)
                 
                 // Analysis explanation card (unchanged)
@@ -85,7 +68,7 @@ struct PhotosConfirmationView: View {
                 
                 Spacer()
                 
-                // CONNECTED: The "Start Analysis" button now calls the ViewModel's method.
+                // CONNECTED: This button now triggers the navigation to the AnalyzingView.
                 Button(action: viewModel.startAnalysisButtonTapped) {
                     HStack(spacing: 10) {
                         Text("[ ▶ ]").font(.system(size: 18, weight: .bold))
@@ -109,31 +92,11 @@ struct PhotosConfirmationView: View {
             .padding(.top, 10)
         }
     }
-    
-    // The view for the loading overlay.
-    private var loadingOverlay: some View {
-        ZStack {
-            // A semi-transparent black background to dim the UI.
-            Color.black.opacity(0.6).ignoresSafeArea()
-            
-            // A spinner and some text.
-            VStack {
-                ProgressView() // The spinner
-                    .progressViewStyle(CircularProgressViewStyle(tint: .white))
-                    .scaleEffect(2) // Make it larger
-                
-                Text("Analyzing...")
-                    .foregroundColor(.white)
-                    .font(.headline)
-                    .padding(.top, 20)
-            }
-        }
-    }
 }
 
 // MARK: - Helper Views
 
-// This component remains unchanged, as it's purely informational.
+// This component is unchanged, as it's purely informational.
 struct AnalysisExplanationCard: View {
     var body: some View {
         VStack(spacing: 10) {
@@ -158,7 +121,7 @@ struct AnalysisExplanationCard: View {
     }
 }
 
-// UPDATED: This component now accepts closures to make its buttons functional.
+// This component is unchanged. It correctly accepts closures.
 struct AlternativeActionButtons: View {
     let onRetake: () -> Void
     let onChooseDifferent: () -> Void
@@ -183,19 +146,13 @@ struct AlternativeActionButtons: View {
 }
 
 // MARK: - Previews
-#Preview("Default State") {
+#Preview {
+    // The preview is updated to use the new, simpler ViewModel initializer.
     let dummyViewModel = PhotosConfirmationViewModel(
         image: UIImage(systemName: "photo.circle.fill")!,
-        onBack: {}, onRetake: {}, onStartAnalysis: { _ in }
+        onBack: { print("Back tapped") },
+        onRetake: { print("Retake tapped") },
+        onStartAnalysis: { _ in print("Start analysis tapped, would navigate to AnalyzingView.") }
     )
-    return PhotosConfirmationView(viewModel: dummyViewModel)
-}
-
-#Preview("Analyzing State") {
-    let dummyViewModel = PhotosConfirmationViewModel(
-        image: UIImage(systemName: "photo.circle.fill")!,
-        onBack: {}, onRetake: {}, onStartAnalysis: { _ in }
-    )
-    dummyViewModel.isAnalyzing = true // Set the analyzing state for the preview.
     return PhotosConfirmationView(viewModel: dummyViewModel)
 }

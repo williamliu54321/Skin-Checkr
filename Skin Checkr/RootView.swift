@@ -37,7 +37,7 @@ struct RootView: View {
                 
             // THE FIX #1: Correctly group all the views that belong to the "image analysis" flow.
             // We've added .resultsView to this group and removed the unused .savedPhotosLibraryView.
-            case .getImageView, .cameraInterfaceView, .photosConfirmationView, .resultsView:
+            case .getImageView, .cameraInterfaceView, .photosConfirmationView, .resultsView, .analysisView:
                 
                 // This transition is defined once and used by all views in this group.
                 let pushTransition = AnyTransition.asymmetric(
@@ -58,6 +58,9 @@ struct RootView: View {
                         .transition(pushTransition)
                 case .resultsView:
                     coordinator.makeResultsView()
+                        .transition(pushTransition)
+                case .analysisView:
+                    coordinator.makeAnalysingView()
                         .transition(pushTransition)
                 default:
                     // This is a safety net required by the compiler. It should never be reached.
