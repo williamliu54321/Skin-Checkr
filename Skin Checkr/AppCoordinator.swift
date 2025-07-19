@@ -20,6 +20,8 @@ final class AppCoordinator: ObservableObject {
     @Published var analysisResult: String?
 
     private var onboardingCoordinator: OnboardingCoordinator?
+    
+    private let analysisService = AnalysisService()
 
     init() {
         Task {
@@ -69,96 +71,53 @@ final class AppCoordinator: ObservableObject {
     }
 
     func makePhotosConfirmationView() -> some View {
-        // Safely unwrap the image from the coordinator's state.
         if let image = capturedImage {
-            
-            // 1. CREATE THE VIEWMODEL FIRST.
-            //    Inject the image and all the navigation logic into the ViewModel.
             let viewModel = PhotosConfirmationViewModel(
                 image: image,
-                onBack: { [weak self] in
-                    withAnimation {
-                        self?.currentScreen = .getImageView
-                    }
-                },
-                onRetake: { [weak self] in
-                    withAnimation {
-                        self?.currentScreen = .cameraInterfaceView
-                    }
-                },
-                onStartAnalysis: { [weak self] _ in
-                    print("✅ Coordinator received 'Start Analysis' signal. Attempting to navigate...")
-                    withAnimation {
-                        self?.currentScreen = .analysisView
-                    }
+                onBack: { [weak self] in withAnimation { self?.currentScreen = .getImageView } },
+                onRetake: { [weak self] in withAnimation { self?.currentScreen = .cameraInterfaceView } },
+                
+                // THIS IS THE CHANGE
+                // The button tap now calls a single, dedicated function to handle the flow.
+                onStartAnalysis: { [weak self] confirmedImage in
+                    self?.beginAnalysisFlow(with: confirmedImage)
                 }
             )
-            
-            // 2. CREATE THE VIEW and pass it the single ViewModel you just made.
             return AnyView(PhotosConfirmationView(viewModel: viewModel))
-            
         } else {
-            // Fallback view remains the same.
             return AnyView(Text("Error: No image available."))
         }
     }
     
     // B. Add the new maker function for the AnalyzingView
+    // UPDATE THIS FUNCTION
     func makeAnalysingView() -> some View {
-        AnalyzingView(
-            onAnalysisComplete: { [weak self] in
-                // When the 4-second "analysis" is done, we call the paywall logic.
-                self?.startAnalysisPaywall()
-            }
-        )
+        // This view is now just a spinner. It doesn't need any completion handlers.
+        AnalyzingView()
     }
 
     // In AppCoordinator.swift
 
-    func startAnalysisPaywall() {
+    // ADD THIS NEW FUNCTION to your AppCoordinator.
+    // It combines the paywall check and the network call.
+    func beginAnalysisFlow(with image: UIImage) {
         Task {
-            // Step 1: Check if the user is ALREADY subscribed before showing anything.
+            // First, check if the user has access (is subscribed).
             if await checkSubscriptionStatus() {
-                
-                // --- PATH A: USER IS ALREADY SUBSCRIBED ---
-                // They get to see the results immediately, no paywall needed.
-                print("User is already subscribed. Navigating to results.")
-                withAnimation {
-                    self.currentScreen = .resultsView
-                }
-                
+                // If they are, perform the analysis directly.
+                await performAnalysis(with: image)
             } else {
-                
-                // --- PATH B: USER IS NOT SUBSCRIBED ---
-                // Present the paywall.
-                print("User is not subscribed. Showing paywall...")
-                
+                // If not, show the paywall.
                 Superwall.shared.register(placement: "MainPaywall") {
-                    
-                    // --- THIS CODE RUNS AFTER THE PAYWALL IS DISMISSED ---
-                    print("Paywall was dismissed. Re-checking subscription status...")
-                    
-                    // We must check the status again to see WHY it was dismissed.
+                    // This is the combined dismiss/purchase handler.
                     Task {
                         if await self.checkSubscriptionStatus() {
-                            
-                            // If status is now TRUE, it means the user just purchased.
-                            print("Purchase successful! Navigating to results.")
-                            await MainActor.run {
-                                withAnimation {
-                                    self.currentScreen = .resultsView
-                                }
-                            }
-                            
+                            // User just purchased. Now perform the analysis.
+                            await self.performAnalysis(with: image)
                         } else {
-                            
-                            // If status is still FALSE, it means the user tapped the 'X' button.
-                            print("User dismissed without purchasing. Navigating home.")
+                            // User dismissed. Go home.
                             await MainActor.run {
-                                withAnimation {
-                                    // THIS IS THE LOGIC YOU ASKED FOR
-                                    self.currentScreen = .resultsView
-                                }
+                                withAnimation { self.currentScreen = .home }
                             }
                         }
                     }
@@ -166,6 +125,37 @@ final class AppCoordinator: ObservableObject {
             }
         }
     }
+    
+    // ADD THIS NEW, DEDICATED FUNCTION for the network call.
+    private func performAnalysis(with image: UIImage) async {
+        // 1. Show the user we are working.
+        //    We can reuse the `analyzing` screen as a real loading view.
+        await MainActor.run {
+            withAnimation { self.currentScreen = .analysisView }
+        }
+        
+        do {
+            // 2. Call the backend.
+            let resultText = try await analysisService.analyzeImage(image: image)
+            
+            // 3. Store the result.
+            self.analysisResult = resultText
+            
+            // 4. Navigate to the results screen.
+            await MainActor.run {
+                withAnimation { self.currentScreen = .resultsView }
+            }
+            
+        } catch {
+            // 5. Handle any errors.
+            print("❌ Analysis failed: \(error.localizedDescription)")
+            // Navigate back home or show an error message.
+            await MainActor.run {
+                withAnimation { self.currentScreen = .home }
+            }
+        }
+    }
+
     func makeHomeView() -> some View {
         let viewModel = HomeViewModel(
             placePaywall: { [weak self] in

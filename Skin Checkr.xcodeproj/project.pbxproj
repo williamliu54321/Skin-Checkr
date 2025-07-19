@@ -22,7 +22,7 @@
 		EF9B8A6E2E2B41E1000DE136 /* AnalysisService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9B8A6D2E2B41D5000DE136 /* AnalysisService.swift */; };
 		EF9B8A752E2B46F4000DE136 /* PhotoPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9B8A742E2B46F4000DE136 /* PhotoPicker.swift */; };
 		EF9B8A792E2B89AD000DE136 /* ResultsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9B8A782E2B89AD000DE136 /* ResultsViewModel.swift */; };
-		EF9B8A7D2E2B9215000DE136 /* AnalysisView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9B8A7C2E2B9215000DE136 /* AnalysisView.swift */; };
+		EF9B8A7D2E2B9215000DE136 /* AnalysingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9B8A7C2E2B9215000DE136 /* AnalysingView.swift */; };
 		EFAC068D2E1DEC8C0072EB4A /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFAC068C2E1DEC850072EB4A /* AppCoordinator.swift */; };
 		EFAC068F2E1E923D0072EB4A /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFAC068E2E1E923D0072EB4A /* RootView.swift */; };
 		EFAC06982E1E95240072EB4A /* SkinCheckrApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFAC06972E1E951E0072EB4A /* SkinCheckrApp.swift */; };
@@ -67,7 +67,7 @@
 		EF9B8A6D2E2B41D5000DE136 /* AnalysisService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalysisService.swift; sourceTree = "<group>"; };
 		EF9B8A742E2B46F4000DE136 /* PhotoPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPicker.swift; sourceTree = "<group>"; };
 		EF9B8A782E2B89AD000DE136 /* ResultsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsViewModel.swift; sourceTree = "<group>"; };
-		EF9B8A7C2E2B9215000DE136 /* AnalysisView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalysisView.swift; sourceTree = "<group>"; };
+		EF9B8A7C2E2B9215000DE136 /* AnalysingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalysingView.swift; sourceTree = "<group>"; };
 		EFAC068C2E1DEC850072EB4A /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		EFAC068E2E1E923D0072EB4A /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		EFAC06972E1E951E0072EB4A /* SkinCheckrApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkinCheckrApp.swift; sourceTree = "<group>"; };
@@ -184,7 +184,7 @@
 		EF9B8A7B2E2B91FA000DE136 /* Analysis */ = {
 			isa = PBXGroup;
 			children = (
-				EF9B8A7C2E2B9215000DE136 /* AnalysisView.swift */,
+				EF9B8A7C2E2B9215000DE136 /* AnalysingView.swift */,
 			);
 			path = Analysis;
 			sourceTree = "<group>";
@@ -221,21 +221,21 @@
 		EFEB61762E17E914001485C1 /* Skin Checkr */ = {
 			isa = PBXGroup;
 			children = (
-				EF9B8A7B2E2B91FA000DE136 /* Analysis */,
 				EFAC06972E1E951E0072EB4A /* SkinCheckrApp.swift */,
 				EFEB61742E17E914001485C1 /* Skin_Checkr.entitlements */,
 				EFEB61722E17E914001485C1 /* Assets.xcassets */,
 				EFAC068C2E1DEC850072EB4A /* AppCoordinator.swift */,
 				EFAC068E2E1E923D0072EB4A /* RootView.swift */,
-				EF78E68F2E1A6A58006AFF44 /* Components */,
-				EF9B8A592E29C247000DE136 /* Home */,
 				EFAC06A62E1EDCA90072EB4A /* Onboarding */,
+				EF9B8A592E29C247000DE136 /* Home */,
+				EF9B8A7B2E2B91FA000DE136 /* Analysis */,
+				EF78E68F2E1A6A58006AFF44 /* Components */,
 				EF9B8A7A2E2B91CA000DE136 /* Results */,
 				EF9B8A5A2E29C260000DE136 /* GetImage */,
 				EF9B8A5B2E29C27B000DE136 /* CameraInterfaceView */,
 				EF9B8A712E2B451C000DE136 /* SavedPhotosLibraryView */,
-				EF9B8A6C2E2B41A2000DE136 /* Services */,
 				EF9B8A5F2E29C6B0000DE136 /* PhotosConfirmation */,
+				EF9B8A6C2E2B41A2000DE136 /* Services */,
 			);
 			path = "Skin Checkr";
 			sourceTree = "<group>";
@@ -398,7 +398,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EF36035F2E277DC40078AF09 /* HomeViewModel.swift in Sources */,
-				EF9B8A7D2E2B9215000DE136 /* AnalysisView.swift in Sources */,
+				EF9B8A7D2E2B9215000DE136 /* AnalysingView.swift in Sources */,
 				EF78E67C2E19B82F006AFF44 /* PhotosConfirmationView.swift in Sources */,
 				EFAC068D2E1DEC8C0072EB4A /* AppCoordinator.swift in Sources */,
 				EF9B8A612E29CF8B000DE136 /* CameraPreview.swift in Sources */,

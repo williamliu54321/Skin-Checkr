@@ -1,11 +1,11 @@
-// Create a new file: AnalyzingView.swift
+// In AnalyzingView.swift
 import SwiftUI
 
 struct AnalyzingView: View {
-    // The coordinator will provide this action to be run when the "analysis" is complete.
-    let onAnalysisComplete: () -> Void
     
-    // State to cycle through the "analysis" text.
+    // REMOVED: The onAnalysisComplete closure is no longer needed.
+    
+    // The state for cycling the text can remain for a nice visual effect.
     @State private var analysisStep = 0
     private let analysisSteps = [
         "Analyzing Asymmetry...",
@@ -24,7 +24,7 @@ struct AnalyzingView: View {
                     .font(.largeTitle).bold()
                     .foregroundColor(.white)
                 
-                // Replace with a real Lottie animation for best results!
+                // The spinner indicates that real work is happening.
                 ProgressView()
                     .progressViewStyle(CircularProgressViewStyle(tint: .white))
                     .scaleEffect(3)
@@ -32,23 +32,22 @@ struct AnalyzingView: View {
                 Text(analysisSteps[analysisStep])
                     .font(.headline)
                     .foregroundColor(Color("skyBlue"))
-                    .contentTransition(.interpolate) // Smoothly fades between text
+                    .id(analysisStep) // Helps SwiftUI animate the text change
+                    .transition(.opacity.animation(.easeInOut))
             }
         }
         .onAppear {
-            // Start the text cycling animation.
+            // The text cycling animation is purely for visual feedback.
+            // It runs indefinitely until the view is removed from the screen.
             Timer.scheduledTimer(withTimeInterval: 1.2, repeats: true) { timer in
                 withAnimation {
+                    // This just loops through the text steps.
                     analysisStep = (analysisStep + 1) % analysisSteps.count
                 }
             }
 
-            // This is the main timer for the entire process.
-            // After 4 seconds, it triggers the onAnalysisComplete closure.
-            Task {
-                try? await Task.sleep(for: .seconds(4))
-                onAnalysisComplete()
-            }
+            // REMOVED: The Task with the 4-second timer is gone.
+            // The view no longer controls the duration of the process.
         }
     }
 }
